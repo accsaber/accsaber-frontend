@@ -1,0 +1,37 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/ag-grid-community/dist/styles/ag-grid.css";
+@import "../node_modules/ag-grid-community/dist/styles/ag-theme-material.css";
+@import "~@angular/material/_theming.scss";
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.accsaber-page {
+  @include mat-elevation(5);
+
+  margin: 20px;
+  height: calc(100% - 40px);
+  width: calc(100% - 40px);
+}
+
+.info {
+  background: lightgreen;
+}
+
+.warn {
+  background: yellow;
+}
+
+.error {
+  background: mediumvioletred;
+}
