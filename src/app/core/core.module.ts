@@ -12,11 +12,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '@angular/forms';
+import { MatListModule } from '@angular/material/list';
+import { MapLeaderboardComponent } from './pages/map-leaderboard/map-leaderboard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'leaderboard', pathMatch: 'full' },
   { path: 'leaderboard', component: LeaderboardComponent },
   { path: 'ranked-maps', component: RankedMapsComponent },
+  { path: 'map-leaderboards/:leaderboardId', component: MapLeaderboardComponent },
   // { path: 'staff-login', component: StaffLoginComponent },
   // { path: 'weekly-challenge', component: WeeklyChallengeComponent },
 ];
@@ -28,6 +31,7 @@ const routes: Routes = [
     WeeklyChallengeComponent,
     StaffLoginComponent,
     SignUpComponent,
+    MapLeaderboardComponent,
   ],
   imports: [
     CommonModule,
@@ -38,6 +42,7 @@ const routes: Routes = [
     MatInputModule,
     SharedModule,
     FormsModule,
+    MatListModule,
   ],
 })
 export class CoreModule {}

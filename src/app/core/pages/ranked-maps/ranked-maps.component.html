@@ -1,3 +1,8 @@
 <div class="accsaber-page">
-WIP
+  <ag-grid-angular
+    [gridOptions]="rankedMapGripOptions"
+    [rowData]="rowData | async"
+    (rowDataChanged)="resizeGrid()"
+    class="ag-theme-material"
+  ></ag-grid-angular>
 </div>

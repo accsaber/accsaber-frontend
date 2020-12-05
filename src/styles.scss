@@ -18,10 +18,19 @@ body {
 
 .accsaber-page {
   @include mat-elevation(5);
+  position: relative;
 
   margin: 20px;
+  //padding: 20px;
   height: calc(100% - 40px);
   width: calc(100% - 40px);
+  border-radius: 7px;
+
+  ag-grid-angular {
+    height: 100%;
+    width: 100%;
+    border-radius: 7px;
+  }
 }
 
 .info {

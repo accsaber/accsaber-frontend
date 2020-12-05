@@ -1,9 +1,9 @@
 <div class="accsaber-page">
   <ag-grid-angular
-    [gridOptions]="leaderboardGrid"
+    [gridOptions]="leaderboardGridOptions"
     [rowData]="rowData | async"
-    class="ag-theme-material mat-elevation-z5"
+    (rowDataChanged)="resizeGrid()"
+    class="ag-theme-material"
     style="height: 100%; width: 100%"
   ></ag-grid-angular>
 </div>
-

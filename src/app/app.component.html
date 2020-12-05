@@ -19,7 +19,7 @@
   >
     <mat-nav-list>
       <div *ngFor="let link of links">
-        <a mat-list-item [routerLink]="link.linkPath" routerLinkActive="current-page">
+        <a mat-list-item [routerLink]="link.linkPath" routerLinkActive="current-page" [disabled]="link.disable">
           {{ link.linkName }}
         </a>
         <mat-divider></mat-divider>

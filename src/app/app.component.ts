@@ -13,8 +13,8 @@ export class AppComponent {
   links = [
     { linkName: 'Leaderboard', linkPath: '/leaderboard' },
     { linkName: 'Ranked Maps', linkPath: '/ranked-maps' },
-    { linkName: 'Weekly Challenge', linkPath: '/weekly-challenge' },
-    { linkName: 'Staff Login', linkPath: '/staff-login' },
+    { linkName: 'Weekly Challenge (soon)', linkPath: '/weekly-challenge', disable: true },
+    { linkName: 'Staff Login (soon)', linkPath: '/staff-login', disable: true },
   ];
 
   constructor(private dialog: MatDialog) {}

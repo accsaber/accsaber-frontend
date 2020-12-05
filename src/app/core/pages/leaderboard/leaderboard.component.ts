@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  GridOptions,
-  NumberFilter, ValueFormatterParams,
-  ValueGetterParams,
-} from 'ag-grid-community';
+import { GridOptions, NumberFilter } from 'ag-grid-community';
 import { LeaderboardService } from './leaderboard.service';
 import { Observable } from 'rxjs';
 import { Player } from '../../../shared/model/player';
+import { accValueFormatter } from '../../../shared/utlis/global-utils';
 
 @Component({
   selector: 'app-leaderboard',
@@ -14,8 +11,10 @@ import { Player } from '../../../shared/model/player';
   styleUrls: ['./leaderboard.component.scss'],
 })
 export class LeaderboardComponent implements OnInit {
-  leaderboardGrid: GridOptions = {
+  leaderboardGridOptions: GridOptions = {
     pagination: true,
+    suppressCellSelection: true,
+    enableCellTextSelection: true,
     defaultColDef: {
       sortable: true,
       filter: true,
@@ -23,18 +22,28 @@ export class LeaderboardComponent implements OnInit {
         suppressAndOrCondition: true,
         buttons: ['clear'],
       },
+      suppressSizeToFit: true,
+    },
+    columnTypes: {
+      finalColumn: {
+        suppressSizeToFit: false,
+        suppressAutoSize: true,
+        suppressMenu: true,
+        sortable: false,
+      },
     },
     columnDefs: [
       { field: 'rank', filter: NumberFilter },
       { field: 'playerName' },
-      { field: 'ap', filter: NumberFilter },
+      { field: 'ap', filter: NumberFilter, valueFormatter: (params) => params.value.toFixed(2) },
       {
         field: 'averageAcc',
-        valueGetter: (params) => this.accValueGetter(params),
-        valueFormatter: (params) => this.accValueFormatter(params),
+        valueGetter: (params) => params.data.averageAcc * 100,
+        valueFormatter: (params) => accValueFormatter(params),
         filter: NumberFilter,
       },
       { field: 'hmd' },
+      { field: '', type: 'finalColumn' },
     ],
   };
 
@@ -46,11 +55,9 @@ export class LeaderboardComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  private accValueGetter(params: ValueGetterParams): number {
-    return params.data.averageAcc * 100;
-  }
-
-  private accValueFormatter(params: ValueFormatterParams): string {
-    return `${params.value}%`;
+  resizeGrid(): void {
+    console.log('yes');
+    this.leaderboardGridOptions.columnApi.autoSizeAllColumns();
+    this.leaderboardGridOptions.api.sizeColumnsToFit();
   }
 }
