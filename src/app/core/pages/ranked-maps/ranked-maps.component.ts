@@ -41,6 +41,7 @@ export class RankedMapsComponent implements OnInit {
         valueFormatter: (params) => capitalize(params.value),
         type: 'finalColumn',
       },
+      { field: 'techyness', headerName: 'Techyness' },
       // { field: 'SCORESABERLINK' },
     ],
   };

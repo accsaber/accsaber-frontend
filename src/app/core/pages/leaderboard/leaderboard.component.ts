@@ -13,6 +13,7 @@ import { accValueFormatter } from '../../../shared/utlis/global-utils';
 export class LeaderboardComponent implements OnInit {
   leaderboardGridOptions: GridOptions = {
     pagination: true,
+    animateRows: true,
     suppressCellSelection: true,
     enableCellTextSelection: true,
     defaultColDef: {
@@ -35,12 +36,33 @@ export class LeaderboardComponent implements OnInit {
     columnDefs: [
       { field: 'rank', filter: NumberFilter },
       { field: 'playerName' },
-      { field: 'ap', filter: NumberFilter, valueFormatter: (params) => params.value.toFixed(2) },
+      {
+        field: 'ap',
+        filter: NumberFilter,
+        valueFormatter: (params) => params.value.toFixed(2),
+        sortingOrder: ['desc', 'asc', ''],
+      },
       {
         field: 'averageAcc',
         valueGetter: (params) => params.data.averageAcc * 100,
         valueFormatter: (params) => accValueFormatter(params),
         filter: NumberFilter,
+        sortingOrder: ['desc', 'asc', ''],
+      },
+      {
+        field: 'averageAcc',
+        valueGetter: (params) => params.data.averageAcc * 100,
+        valueFormatter: (params) => accValueFormatter(params),
+        filter: NumberFilter,
+        sortingOrder: ['desc', 'asc', ''],
+      },
+      { field: 'rankedPlays', filter: NumberFilter, sortingOrder: ['desc', 'asc', ''] },
+      {
+        field: 'averageApPerMap',
+        headerName: 'Average AP Per Map',
+        filter: NumberFilter,
+        valueFormatter: (params) => params.value.toFixed(2),
+        sortingOrder: ['desc', 'asc', ''],
       },
       { field: 'hmd' },
       { field: '', type: 'finalColumn' },

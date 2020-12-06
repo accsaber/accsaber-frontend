@@ -3,6 +3,7 @@ export interface RankedMap {
   songSubName: string;
   songAuthorName: string;
   levelAuthorName: string;
+  techyness: string;
 
   difficulty: string;
   leaderboardId: string;

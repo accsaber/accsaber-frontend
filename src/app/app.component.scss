@@ -2,3 +2,16 @@
   background: lightblue;
   font-weight: bold;
 }
+
+.beta {
+  position: absolute;
+  color: #00000046;
+  bottom: 0;
+  left: 0;
+  font-size: 40px;
+  z-index: 10000;
+  margin: 20px;
+
+  -webkit-user-select: none;
+  user-select: none;
+}

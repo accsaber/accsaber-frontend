@@ -19,7 +19,12 @@
   >
     <mat-nav-list>
       <div *ngFor="let link of links">
-        <a mat-list-item [routerLink]="link.linkPath" routerLinkActive="current-page" [disabled]="link.disable">
+        <a
+          mat-list-item
+          [routerLink]="link.linkPath"
+          routerLinkActive="current-page"
+          [disabled]="link.disable"
+        >
           {{ link.linkName }}
         </a>
         <mat-divider></mat-divider>
@@ -30,3 +35,6 @@
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
+<div class="beta" *ngIf="isBeta">
+  BETA VERSION
+</div>

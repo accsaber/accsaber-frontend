@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LeaderboardComponent } from './pages/leaderboard/leaderboard.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { RankedMapsComponent } from './pages/ranked-maps/ranked-maps.component';
-import { WeeklyChallengeComponent } from './pages/weekly-challenge/weekly-challenge.component';
+import { BiWeeklyChallengeComponent } from './pages/weekly-challenge/bi-weekly-challenge.component';
 import { StaffLoginComponent } from './pages/staff-login/staff-login.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -21,14 +21,14 @@ const routes: Routes = [
   { path: 'ranked-maps', component: RankedMapsComponent },
   { path: 'map-leaderboards/:leaderboardId', component: MapLeaderboardComponent },
   // { path: 'staff-login', component: StaffLoginComponent },
-  // { path: 'weekly-challenge', component: WeeklyChallengeComponent },
+  // { path: 'bi-weekly-challenge', component: BiWeeklyChallengeComponent },
 ];
 
 @NgModule({
   declarations: [
     LeaderboardComponent,
     RankedMapsComponent,
-    WeeklyChallengeComponent,
+    BiWeeklyChallengeComponent,
     StaffLoginComponent,
     SignUpComponent,
     MapLeaderboardComponent,
