@@ -40,7 +40,12 @@ export class MapLeaderboardComponent implements OnInit {
     columnDefs: [
       { field: 'rank', filter: NumberFilter },
       { field: 'playerName' },
-      { field: 'ap', filter: NumberFilter, valueFormatter: (params) => params.value.toFixed(2) },
+      {
+        field: 'ap',
+        headerName: 'AP',
+        filter: NumberFilter,
+        valueFormatter: (params) => params.value.toFixed(2),
+      },
       { field: 'score', filter: NumberFilter },
       {
         field: 'accuracy',

@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://accsaber.ixsen.com/api',
+  apiUrl: 'https://www.accsaber.ixsen.de/api',
   isBeta: true,
 };

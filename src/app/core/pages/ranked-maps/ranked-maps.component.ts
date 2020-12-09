@@ -42,7 +42,7 @@ export class RankedMapsComponent implements OnInit {
         type: 'finalColumn',
       },
       { field: 'techyness', headerName: 'Techyness' },
-      // { field: 'SCORESABERLINK' },
+      { headerName: 'Beatsaverlink' },
     ],
   };
   rowData: Observable<RankedMap[]>;
