@@ -1,0 +1,31 @@
+@import "~@angular/material/_theming.scss";
+
+.grid-container {
+  display: grid;
+
+  padding: 20px;
+  height: calc(100% - 65px);
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 30% 70%;
+  gap: 15px 15px;
+  grid-template-areas:
+    "mapinfo playerinfo"
+    "scores scores";
+}
+.map-info {
+  @include mat-elevation(5);
+  grid-area: mapinfo;
+  padding: 10px;
+  border-radius: 5px;
+}
+.player-info {
+  @include mat-elevation(5);
+  grid-area: playerinfo;
+  padding: 10px;
+  border-radius: 5px;
+}
+.scores {
+  @include mat-elevation(5);
+  grid-area: scores;
+  border-radius: 5px;
+}

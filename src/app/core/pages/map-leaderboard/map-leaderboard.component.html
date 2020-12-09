@@ -1,0 +1,16 @@
+<div class="grid-container">
+  <div class="map-info">
+    <h2>{{ mapInfo.songName }} - {{ mapInfo.songAuthorName }}</h2>
+    <p>Difficulty: {{ capitalize(mapInfo.difficulty) }}</p>
+    <p>Mapped by: {{ mapInfo.levelAuthorName }}</p>
+    <p>Techyness: {{ mapInfo.techyness }}</p>
+    <p>(more info coming soon)</p>
+  </div>
+  <div class="player-info">(soon)</div>
+  <ag-grid-angular
+    [gridOptions]="gridOptions"
+    [rowData]="rowData | async"
+    (rowDataChanged)="resizeGrid()"
+    class="ag-theme-material scores"
+  ></ag-grid-angular>
+</div>
