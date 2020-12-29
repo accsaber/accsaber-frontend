@@ -1,0 +1,8 @@
+<button
+  mat-icon-button
+  *ngFor="let buttonInfo of buttonInfos"
+  (click)="onButtonClicked(buttonInfo)"
+  [ngStyle]="{ color: !buttonInfo.color ? '#000000' : buttonInfo.color }"
+>
+  <mat-icon>{{ buttonInfo.icon }}</mat-icon>
+</button>

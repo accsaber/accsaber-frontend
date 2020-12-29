@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { GridOptions, RowClickedEvent } from 'ag-grid-community';
+import { GridOptions, NumberFilter } from 'ag-grid-community';
 import { Observable } from 'rxjs';
 import { RankedMap } from '../../../shared/model/ranked-map';
 import { RankedMapsService } from './ranked-maps.service';
 import { capitalize } from '../../../shared/utlis/global-utils';
 import { Router } from '@angular/router';
+import { GridButtonComponent } from '../../components/grid-button/grid-button.component';
+import { GridLinkComponent } from '../../components/grid-link/grid-link.component';
+import { TechynessComponent } from '../../components/techyness/techyness.component';
 
 @Component({
   selector: 'app-ranked-maps',
@@ -16,6 +19,7 @@ export class RankedMapsComponent implements OnInit {
     pagination: true,
     suppressCellSelection: true,
     enableCellTextSelection: true,
+    suppressRowHoverHighlight: true,
     defaultColDef: {
       sortable: true,
       filter: true,
@@ -30,10 +34,20 @@ export class RankedMapsComponent implements OnInit {
         suppressSizeToFit: false,
         suppressAutoSize: true,
       },
+      button: {
+        cellRendererFramework: GridButtonComponent,
+        sortable: false,
+        filter: false,
+        suppressMenu: true,
+      },
     },
-    onRowClicked: (event) => this.openMapLeaderboard(event),
     columnDefs: [
-      { field: 'songName', headerName: 'Name' },
+      {
+        field: 'songName',
+        headerName: 'Name',
+        cellRendererFramework: GridLinkComponent,
+        cellRendererParams: { link: '/map-leaderboards', accessor: 'leaderboardId' },
+      },
       { field: 'songAuthorName', headerName: 'Artist' },
       { field: 'levelAuthorName', headerName: 'Mapper' },
       {
@@ -41,8 +55,31 @@ export class RankedMapsComponent implements OnInit {
         valueFormatter: (params) => capitalize(params.value),
         type: 'finalColumn',
       },
-      { field: 'techyness', headerName: 'Techyness' },
-      { headerName: 'Beatsaverlink' },
+      {
+        field: 'techyness',
+        headerName: 'Techyness',
+        filter: NumberFilter,
+        cellRendererFramework: TechynessComponent,
+      },
+      {
+        headerName: '',
+        type: 'button',
+        cellRendererParams: {
+          buttonInfos: [
+            {
+              clickCallback: (key) => this.openBeatSaver(key),
+              icon: 'archive',
+              accessor: 'beatsaverKey',
+            },
+            {
+              clickCallback: (leaderboardId) => this.openScoresaberLeaderboard(leaderboardId),
+              icon: 'poll',
+              accessor: 'leaderboardId',
+              color: '#e9d409',
+            },
+          ],
+        },
+      },
     ],
   };
   rowData: Observable<RankedMap[]>;
@@ -58,8 +95,11 @@ export class RankedMapsComponent implements OnInit {
     this.rankedMapGripOptions.api.sizeColumnsToFit();
   }
 
-  private openMapLeaderboard(event: RowClickedEvent): void {
-    console.log(event);
-    this.router.navigateByUrl(`/map-leaderboards/${event.data.leaderboardId}`);
+  private openBeatSaver(key: string): void {
+    window.open(`https://beatsaver.com/beatmap/${key}`, '_blank');
+  }
+
+  private openScoresaberLeaderboard(leaderboardId: string): void {
+    window.open(`https://scoresaber.com/leaderboard/${leaderboardId}`, '_blank');
   }
 }

@@ -14,6 +14,10 @@ import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { MatListModule } from '@angular/material/list';
 import { MapLeaderboardComponent } from './pages/map-leaderboard/map-leaderboard.component';
+import { GridButtonComponent } from './components/grid-button/grid-button.component';
+import { GridLinkComponent } from './components/grid-link/grid-link.component';
+import { MatIconModule } from '@angular/material/icon';
+import { TechynessComponent } from './components/techyness/techyness.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'leaderboard', pathMatch: 'full' },
@@ -32,6 +36,9 @@ const routes: Routes = [
     StaffLoginComponent,
     SignUpComponent,
     MapLeaderboardComponent,
+    GridButtonComponent,
+    GridLinkComponent,
+    TechynessComponent,
   ],
   imports: [
     CommonModule,
@@ -43,6 +50,7 @@ const routes: Routes = [
     SharedModule,
     FormsModule,
     MatListModule,
+    MatIconModule,
   ],
 })
 export class CoreModule {}
