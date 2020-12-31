@@ -3,7 +3,7 @@ import { GridOptions, NumberFilter } from 'ag-grid-community';
 import { Observable } from 'rxjs';
 import { RankedMap } from '../../../shared/model/ranked-map';
 import { RankedMapsService } from './ranked-maps.service';
-import { capitalize } from '../../../shared/utlis/global-utils';
+import { capitalize, songNameValueGetter } from '../../../shared/utlis/global-utils';
 import { Router } from '@angular/router';
 import { GridButtonComponent } from '../../components/grid-button/grid-button.component';
 import { GridLinkComponent } from '../../components/grid-link/grid-link.component';
@@ -17,6 +17,7 @@ import { TechynessComponent } from '../../components/techyness/techyness.compone
 export class RankedMapsComponent implements OnInit {
   rankedMapGripOptions: GridOptions = {
     pagination: true,
+    paginationAutoPageSize: true,
     suppressCellSelection: true,
     enableCellTextSelection: true,
     suppressRowHoverHighlight: true,
@@ -43,10 +44,10 @@ export class RankedMapsComponent implements OnInit {
     },
     columnDefs: [
       {
-        field: 'songName',
-        headerName: 'Name',
+        headerName: 'Song',
         cellRendererFramework: GridLinkComponent,
         cellRendererParams: { link: '/map-leaderboards', accessor: 'leaderboardId' },
+        valueGetter: (params) => songNameValueGetter(params.data),
       },
       { field: 'songAuthorName', headerName: 'Artist' },
       { field: 'levelAuthorName', headerName: 'Mapper' },
