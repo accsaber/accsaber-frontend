@@ -6,7 +6,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import { RankedMapsComponent } from './pages/ranked-maps/ranked-maps.component';
 import { BiWeeklyChallengeComponent } from './pages/weekly-challenge/bi-weekly-challenge.component';
 import { StaffLoginComponent } from './pages/staff-login/staff-login.component';
-import { SignUpComponent } from './pages/sign-up/sign-up.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -21,6 +21,7 @@ import { TechynessComponent } from './components/techyness/techyness.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { HeaderButtonComponent } from './components/header-button/header-button.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSelectModule } from '@angular/material/select';
 
 const routes: Routes = [
   { path: '', redirectTo: 'leaderboard', pathMatch: 'full' },
@@ -58,6 +59,7 @@ const routes: Routes = [
     MatListModule,
     MatIconModule,
     MatTooltipModule,
+    MatSelectModule,
   ],
 })
 export class CoreModule {}

@@ -4,7 +4,7 @@ import { MapLeaderboardService } from './map-leaderboard.service';
 import { MapLeaderboardPlayer } from '../../../shared/model/map-leaderboard-player';
 import { Observable } from 'rxjs';
 import { GridOptions, NumberFilter } from 'ag-grid-community';
-import { accValueFormatter, capitalize } from '../../../shared/utlis/global-utils';
+import { accValueFormatter, capitalize, getPlayerId } from '../../../shared/utlis/global-utils';
 import { RankedMap } from '../../../shared/model/ranked-map';
 import { GridLinkComponent } from '../../components/grid-link/grid-link.component';
 
@@ -22,6 +22,8 @@ export class MapLeaderboardComponent implements OnInit {
     paginationAutoPageSize: true,
     suppressCellSelection: true,
     enableCellTextSelection: true,
+    getRowStyle: (params) =>
+      params.data.playerId === getPlayerId() ? { background: 'lightgreen' } : {},
     defaultColDef: {
       sortable: true,
       filter: true,
@@ -73,12 +75,13 @@ export class MapLeaderboardComponent implements OnInit {
     this.route.params.subscribe((params) => {
       const leaderboardId = params.leaderboardId;
       this.rowData = this.mapLeaderboardService.getMapLeaderboard(leaderboardId);
-      this.mapLeaderboardService.getMapData(leaderboardId).subscribe((rankedMap) => (this.mapInfo = rankedMap));
+      this.mapLeaderboardService
+        .getMapData(leaderboardId)
+        .subscribe((rankedMap) => (this.mapInfo = rankedMap));
     });
   }
 
   resizeGrid(): void {
-    console.log('yes');
     this.gridOptions.columnApi.autoSizeAllColumns();
     this.gridOptions.api.sizeColumnsToFit();
   }

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { SignUpComponent } from './core/pages/sign-up/sign-up.component';
+import { SignUpComponent } from './core/components/sign-up/sign-up.component';
 import { environment } from '../environments/environment';
+import { getPlayerId, getPlayerName } from './shared/utlis/global-utils';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,8 @@ import { environment } from '../environments/environment';
 })
 export class AppComponent {
   title = 'accsaber-frontend';
+  playerName: string;
+  playerId: string;
 
   links = [
     { linkName: 'Leaderboard', linkPath: '/leaderboard' },
@@ -21,6 +24,9 @@ export class AppComponent {
 
   constructor(private dialog: MatDialog) {
     this.isBeta = environment.isBeta;
+
+    this.playerName = getPlayerName();
+    this.playerId = getPlayerId();
   }
 
   showSignupDialog(): void {

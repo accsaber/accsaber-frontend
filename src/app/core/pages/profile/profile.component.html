@@ -6,7 +6,11 @@
     <p>Average Acc: {{ (playerInfo.averageAcc * 100).toFixed(2) }}%</p>
     <p>(more info coming soon)</p>
   </div>
-  <div class="player-details">(soon)</div>
+  <div class="player-details">
+    <button mat-raised-button (click)="setAsProfile()">Set as my profile</button>
+    <div style="text-align: center">(more info soon)</div>
+  </div>
+
   <ag-grid-angular
     [gridOptions]="gridOptions"
     [rowData]="rowData | async"

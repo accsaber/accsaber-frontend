@@ -1,0 +1,44 @@
+<div class="signup-dialog" *ngIf="!playerInfo">
+  <mat-form-field>
+    <mat-label>Scoresaber link</mat-label>
+    <input matInput [(ngModel)]="scoreSaberLink" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Select HMD</mat-label>
+    <mat-select [(value)]="selectedHmd">
+      <mat-option *ngFor="let hmd of hmds" [value]="hmd">
+        {{ hmd }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="action-bar">
+    <mat-spinner *ngIf="isLoading" [diameter]="33"> </mat-spinner>
+    <div class="spacer"></div>
+    <button mat-button (click)="checkPlayer()">Get Playerdata</button>
+  </div>
+</div>
+
+<div class="signup-dialog" *ngIf="!!playerInfo">
+  <mat-form-field>
+    <mat-label>Player Name</mat-label>
+    <input matInput disabled [ngModel]="playerInfo.playerName" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>PlayerID</mat-label>
+    <input matInput disabled [ngModel]="playerInfo.playerId" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>HMD</mat-label>
+    <input matInput disabled [ngModel]="selectedHmd" />
+  </mat-form-field>
+
+  <div class="action-bar">
+    <mat-spinner *ngIf="isLoading" [diameter]="33"> </mat-spinner>
+    <div class="spacer"></div>
+    <button mat-button (click)="signupPlayer()">Signup with this data</button>
+  </div>
+</div>
