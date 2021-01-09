@@ -14,3 +14,16 @@ export function accValueFormatter(params: ValueFormatterParams): string {
 export function songNameValueGetter(data: any): string {
   return `${data.songAuthorName} - ${data.songName}`;
 }
+
+export function savePlayerToStorage(playerName: string, playerId: string): void {
+  localStorage.setItem('playerName', playerName);
+  localStorage.setItem('playerId', playerId);
+}
+
+export function getPlayerName(): string {
+  return localStorage.getItem('playerName');
+}
+
+export function getPlayerId(): string {
+  return localStorage.getItem('playerId');
+}

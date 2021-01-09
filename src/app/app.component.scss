@@ -15,3 +15,22 @@
   -webkit-user-select: none;
   user-select: none;
 }
+
+.player {
+  display: flex;
+  flex-direction: row;
+
+  margin-right: 10px;
+  vertical-align: middle;
+  p {
+    margin: auto;
+    padding: 0;
+  }
+  img {
+    height: 40px;
+    width: 40px;
+    vertical-align: middle;
+    border-radius: 20px;
+    margin-left: 10px;
+  }
+}

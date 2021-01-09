@@ -3,7 +3,7 @@ import { GridOptions, NumberFilter } from 'ag-grid-community';
 import { LeaderboardService } from './leaderboard.service';
 import { Observable } from 'rxjs';
 import { Player } from '../../../shared/model/player';
-import { accValueFormatter } from '../../../shared/utlis/global-utils';
+import { accValueFormatter, getPlayerId } from '../../../shared/utlis/global-utils';
 import { GridLinkComponent } from '../../components/grid-link/grid-link.component';
 
 @Component({
@@ -19,6 +19,8 @@ export class LeaderboardComponent implements OnInit {
     suppressRowHoverHighlight: true,
     suppressCellSelection: true,
     enableCellTextSelection: true,
+    getRowStyle: (params) =>
+      params.data.playerId === getPlayerId() ? { background: 'lightgreen' } : {},
     defaultColDef: {
       sortable: true,
       filter: true,
@@ -80,7 +82,6 @@ export class LeaderboardComponent implements OnInit {
   ngOnInit(): void {}
 
   resizeGrid(): void {
-    console.log('yes');
     this.leaderboardGridOptions.columnApi.autoSizeAllColumns();
     this.leaderboardGridOptions.api.sizeColumnsToFit();
   }
