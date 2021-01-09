@@ -5,6 +5,7 @@ import { GridOptions, NumberFilter } from 'ag-grid-community';
 import {
   accValueFormatter,
   capitalize,
+  savePlayerToStorage,
   songNameValueGetter,
 } from '../../../shared/utlis/global-utils';
 import { ProfileService } from './profile.service';
@@ -91,5 +92,10 @@ export class ProfileComponent implements OnInit {
   resizeGrid(): void {
     this.gridOptions.columnApi.autoSizeAllColumns();
     this.gridOptions.api.sizeColumnsToFit();
+  }
+
+  setAsProfile(): void {
+    savePlayerToStorage(this.playerInfo.playerName, this.playerInfo.playerId);
+    window.location.reload();
   }
 }

@@ -12,18 +12,32 @@
     "playerinfo playerdetails"
     "scores scores";
 }
+
 .player-info {
   @include mat-elevation(5);
   grid-area: playerinfo;
   padding: 10px;
   border-radius: 5px;
 }
+
 .player-details {
   @include mat-elevation(5);
   grid-area: playerdetails;
   padding: 10px;
   border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+
+  button {
+    width: 200px;
+    place-self: flex-end;
+  }
+
+  div {
+    margin: auto;
+  }
 }
+
 .scores {
   @include mat-elevation(5);
   grid-area: scores;
