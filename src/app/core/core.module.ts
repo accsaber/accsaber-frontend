@@ -18,12 +18,14 @@ import { GridButtonComponent } from './components/grid-button/grid-button.compon
 import { GridLinkComponent } from './components/grid-link/grid-link.component';
 import { MatIconModule } from '@angular/material/icon';
 import { TechynessComponent } from './components/techyness/techyness.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'leaderboard', pathMatch: 'full' },
   { path: 'leaderboard', component: LeaderboardComponent },
   { path: 'ranked-maps', component: RankedMapsComponent },
   { path: 'map-leaderboards/:leaderboardId', component: MapLeaderboardComponent },
+  { path: 'player-profile/:playerId', component: ProfileComponent },
   // { path: 'staff-login', component: StaffLoginComponent },
   // { path: 'bi-weekly-challenge', component: BiWeeklyChallengeComponent },
 ];
@@ -39,6 +41,7 @@ const routes: Routes = [
     GridButtonComponent,
     GridLinkComponent,
     TechynessComponent,
+    ProfileComponent,
   ],
   imports: [
     CommonModule,

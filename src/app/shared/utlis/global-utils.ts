@@ -10,3 +10,7 @@ export function capitalize(word: string): string {
 export function accValueFormatter(params: ValueFormatterParams): string {
   return `${params.value.toFixed(2)}%`;
 }
+
+export function songNameValueGetter(data: any): string {
+  return `${data.songAuthorName} - ${data.songName}`;
+}

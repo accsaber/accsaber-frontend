@@ -1,0 +1,16 @@
+<div class="grid-container">
+  <div class="player-info">
+    <h2>{{ playerInfo.playerName }}</h2>
+    <p>Rank: {{ playerInfo.rank }}</p>
+    <p>AP: {{ playerInfo.ap }}</p>
+    <p>Average Acc: {{ (playerInfo.averageAcc * 100).toFixed(2) }}%</p>
+    <p>(more info coming soon)</p>
+  </div>
+  <div class="player-details">(soon)</div>
+  <ag-grid-angular
+    [gridOptions]="gridOptions"
+    [rowData]="rowData | async"
+    (rowDataChanged)="resizeGrid()"
+    class="ag-theme-material scores"
+  ></ag-grid-angular>
+</div>

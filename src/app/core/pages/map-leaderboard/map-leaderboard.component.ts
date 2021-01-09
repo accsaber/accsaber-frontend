@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { GridOptions, NumberFilter } from 'ag-grid-community';
 import { accValueFormatter, capitalize } from '../../../shared/utlis/global-utils';
 import { RankedMap } from '../../../shared/model/ranked-map';
+import { GridLinkComponent } from '../../components/grid-link/grid-link.component';
 
 @Component({
   selector: 'app-map-leaderboard',
@@ -18,6 +19,7 @@ export class MapLeaderboardComponent implements OnInit {
 
   gridOptions: GridOptions = {
     pagination: true,
+    paginationAutoPageSize: true,
     suppressCellSelection: true,
     enableCellTextSelection: true,
     defaultColDef: {
@@ -39,7 +41,12 @@ export class MapLeaderboardComponent implements OnInit {
     },
     columnDefs: [
       { field: 'rank', filter: NumberFilter },
-      { field: 'playerName' },
+      {
+        headerName: 'Player Name',
+        field: 'playerName',
+        cellRendererFramework: GridLinkComponent,
+        cellRendererParams: { link: '/player-profile', accessor: 'playerId' },
+      },
       {
         field: 'ap',
         headerName: 'AP',
@@ -66,7 +73,7 @@ export class MapLeaderboardComponent implements OnInit {
     this.route.params.subscribe((params) => {
       const leaderboardId = params.leaderboardId;
       this.rowData = this.mapLeaderboardService.getMapLeaderboard(leaderboardId);
-      this.mapLeaderboardService.getMapData(leaderboardId).subscribe((l) => (this.mapInfo = l));
+      this.mapLeaderboardService.getMapData(leaderboardId).subscribe((rankedMap) => (this.mapInfo = rankedMap));
     });
   }
 

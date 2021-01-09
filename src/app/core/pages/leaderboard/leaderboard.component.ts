@@ -4,6 +4,7 @@ import { LeaderboardService } from './leaderboard.service';
 import { Observable } from 'rxjs';
 import { Player } from '../../../shared/model/player';
 import { accValueFormatter } from '../../../shared/utlis/global-utils';
+import { GridLinkComponent } from '../../components/grid-link/grid-link.component';
 
 @Component({
   selector: 'app-leaderboard',
@@ -13,6 +14,7 @@ import { accValueFormatter } from '../../../shared/utlis/global-utils';
 export class LeaderboardComponent implements OnInit {
   leaderboardGridOptions: GridOptions = {
     pagination: true,
+    paginationAutoPageSize: true,
     animateRows: true,
     suppressRowHoverHighlight: true,
     suppressCellSelection: true,
@@ -36,7 +38,12 @@ export class LeaderboardComponent implements OnInit {
     },
     columnDefs: [
       { field: 'rank', filter: NumberFilter },
-      { field: 'playerName' },
+      {
+        headerName: 'Player Name',
+        field: 'playerName',
+        cellRendererFramework: GridLinkComponent,
+        cellRendererParams: { link: '/player-profile', accessor: 'playerId' },
+      },
       {
         field: 'ap',
         headerName: 'AP',

@@ -2,7 +2,7 @@ export interface Player {
   rank: number;
   playerName: string;
   ap: string;
-  averageAcc: string;
+  averageAcc: number;
   hmd: string;
   avatarUrl: string;
   isAccChamp: boolean;
