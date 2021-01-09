@@ -8,4 +8,5 @@ export interface RankedMap {
   difficulty: string;
   leaderboardId: string;
   beatsaverKey: string;
+  songHash: string;
 }
