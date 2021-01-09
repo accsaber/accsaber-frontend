@@ -1,0 +1,8 @@
+<button
+  mat-icon-button
+  [matTooltip]="params.buttonInfo.tooltip"
+  (click)="onButtonClicked()"
+  [ngStyle]="{ color: !params.buttonInfo.color ? '#000000' : params.buttonInfo.color }"
+>
+  <mat-icon>{{ params.buttonInfo.icon }}</mat-icon>
+</button>

@@ -21,7 +21,6 @@ body {
   position: relative;
 
   margin: 20px;
-  //padding: 20px;
   height: calc(100% - 40px);
   width: calc(100% - 40px);
   border-radius: 7px;
@@ -30,6 +29,19 @@ body {
     height: 100%;
     width: 100%;
     border-radius: 7px;
+  }
+}
+
+.grid-center {
+  justify-content: center;
+}
+
+.grid-center-cell {
+  div {
+    span {
+      width: 100%;
+      text-align: center;
+    }
   }
 }
 
