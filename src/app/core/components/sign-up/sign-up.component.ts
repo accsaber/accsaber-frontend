@@ -39,9 +39,8 @@ export class SignUpComponent implements OnInit {
   checkPlayer(): void {
     this.isLoading = true;
     this.signupService.checkIfUserExists(this.scoreSaberLink).subscribe(
-      (f) => {
-        this.playerInfo = f.playerInfo;
-        console.log(f);
+      (scoresaberData) => {
+        this.playerInfo = scoresaberData.playerInfo;
         this.isLoading = false;
       },
       () => {
@@ -52,13 +51,13 @@ export class SignUpComponent implements OnInit {
   }
 
   signupPlayer(): void {
+    this.isLoading = true;
     this.signupService.signUpPlayer(this.playerInfo, this.selectedHmd).subscribe(
       () => {
         savePlayerToStorage(this.playerInfo.playerName, this.playerInfo.playerId);
         window.location.reload();
       },
       (err: HttpErrorResponse) => {
-        this.isLoading = false;
         if (err.error.errorCode === '00001') {
           savePlayerToStorage(this.playerInfo.playerName, this.playerInfo.playerId);
           window.location.reload();
