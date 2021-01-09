@@ -5,7 +5,7 @@
     </button>
     <div class="spacer"></div>
     <button mat-button (click)="showSignupDialog()" *ngIf="!playerName">Sign up</button>
-    <div *ngIf="!!playerName" class="player">
+    <div *ngIf="!!playerName" class="player" [routerLink]="'player-profile/' + playerId" mat-ripple>
       <p>{{ playerName }}</p>
       <!--      <img src="https://scoresaber.com/imports/images/usr-avatars/{{ playerId }}.jpg" /> Disabled for now until avatars are mirrored to not put additional stress on scoresaber-->
     </div>

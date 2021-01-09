@@ -15,6 +15,7 @@ import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from '@angular/material/d
 import { AccsaberHttpInterceptor } from './shared/accsaber-http-interceptor';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
+import { MatRippleModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,6 +33,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatDialogModule,
     MatSnackBarModule,
     MatSelectModule,
+    MatRippleModule,
   ],
   providers: [
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
