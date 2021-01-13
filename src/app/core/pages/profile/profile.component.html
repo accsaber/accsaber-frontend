@@ -2,7 +2,7 @@
   <div class="player-info">
     <h2>{{ playerInfo.playerName }}</h2>
     <p>Rank: {{ playerInfo.rank }}</p>
-    <p>AP: {{ playerInfo.ap }}</p>
+    <p>AP: {{ playerInfo.ap.toFixed(2) }}</p>
     <p>Average Acc: {{ (playerInfo.averageAcc * 100).toFixed(2) }}%</p>
     <p>(more info coming soon)</p>
   </div>

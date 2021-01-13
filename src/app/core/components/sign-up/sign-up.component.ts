@@ -24,8 +24,11 @@ export class SignUpComponent implements OnInit {
     'Oculus Quest',
     'Oculus Quest 2',
     'Oculus Rift S',
-    'HTC Vive (Pro)',
-    'HTC Vive (Pro) | Index Controllers',
+    'HTC Vive',
+    'HTC Vive | Index Controllers',
+    'HTC Vive Pro',
+    'HTC Vive Pro | Index Controllers',
+    'Pimax | Index Controllers',
   ];
 
   constructor(
