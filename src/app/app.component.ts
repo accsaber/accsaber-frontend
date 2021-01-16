@@ -18,7 +18,7 @@ export class AppComponent {
     { linkName: 'Leaderboard', linkPath: '/leaderboard' },
     { linkName: 'Ranked Maps', linkPath: '/ranked-maps' },
     { linkName: 'Biweekly Challenge (soon)', linkPath: '/weekly-challenge', disable: true },
-    { linkName: 'Staff Login (soon)', linkPath: '/staff-login', disable: true },
+    { linkName: 'Staff Login (soon)', linkPath: '/staff-login', last: true },
   ];
   isBeta: boolean;
 

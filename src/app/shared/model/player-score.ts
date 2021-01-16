@@ -7,7 +7,7 @@ export interface PlayerScore {
   songName: string;
   songAuthorName: string;
   levelAuthorName: string;
-  techyness: string;
+  techyness: number;
 
   difficulty: string;
   leaderboardId: string;

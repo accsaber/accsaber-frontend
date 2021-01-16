@@ -52,7 +52,6 @@ export class RankedMapsComponent implements OnInit {
         cellRendererParams: { link: '/map-leaderboards', accessor: 'leaderboardId' },
         valueGetter: (params) => songNameValueGetter(params.data),
       },
-      { field: 'songAuthorName', headerName: 'Artist' },
       { field: 'levelAuthorName', headerName: 'Mapper' },
       {
         field: 'difficulty',

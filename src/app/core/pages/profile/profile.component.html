@@ -1,14 +1,23 @@
 <div class="grid-container">
   <div class="player-info">
-    <h2>{{ playerInfo.playerName }}</h2>
-    <p>Rank: {{ playerInfo.rank }}</p>
-    <p>AP: {{ playerInfo.ap }}</p>
-    <p>Average Acc: {{ (playerInfo.averageAcc * 100).toFixed(2) }}%</p>
+    <h2>{{ playerInfo?.playerName }}</h2>
+    <p>Rank: {{ playerInfo?.rank }}</p>
+    <p>AP: {{ playerInfo?.ap.toFixed(2) }}</p>
+    <p>Average Acc: {{ (playerInfo?.averageAcc * 100).toFixed(2) }}%</p>
     <p>(more info coming soon)</p>
   </div>
   <div class="player-details">
     <button mat-raised-button (click)="setAsProfile()">Set as my profile</button>
-    <div style="text-align: center">(more info soon)</div>
+    <div>
+      <canvas
+        baseChart
+        [datasets]="playerSkill"
+        [labels]="skillLabels"
+        [options]="options"
+        legend="false"
+        chartType="radar"
+      ></canvas>
+    </div>
   </div>
 
   <ag-grid-angular

@@ -2,7 +2,7 @@ export interface Player {
   rank: number;
   playerName: string;
   playerId: string;
-  ap: string;
+  ap: number;
   averageAcc: number;
   hmd: string;
   avatarUrl: string;

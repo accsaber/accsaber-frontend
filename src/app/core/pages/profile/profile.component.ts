@@ -13,6 +13,8 @@ import { PlayerScore } from '../../../shared/model/player-score';
 import { Player } from '../../../shared/model/player';
 import { TechynessComponent } from '../../components/techyness/techyness.component';
 import { GridLinkComponent } from '../../components/grid-link/grid-link.component';
+import { ChartDataSets, ChartOptions } from 'chart.js';
+import { Label } from 'ng2-charts';
 
 @Component({
   selector: 'app-profile',
@@ -21,8 +23,17 @@ import { GridLinkComponent } from '../../components/grid-link/grid-link.componen
 })
 export class ProfileComponent implements OnInit {
   rowData: Observable<PlayerScore[]>;
-  playerInfo: Player;
+  skillLabels: Label[] = ['Tech', 'StandardTech', 'Standard', 'StandardTrue', 'True'];
+  playerSkill: ChartDataSets[] = [];
+  options: ChartOptions = {
+    responsive: true,
+    maintainAspectRatio: true,
+    legend: { display: false },
+    animation: { animateRotate: true },
+    scale: { ticks: { min: 0, max: 100, display: false } },
+  };
 
+  playerInfo: Player;
   gridOptions: GridOptions = {
     pagination: true,
     paginationAutoPageSize: true,
@@ -83,8 +94,27 @@ export class ProfileComponent implements OnInit {
     this.route.params.subscribe((params) => {
       const playerId = params.playerId;
       this.rowData = this.profileService.getPlayerRankedScores(playerId);
+      this.rowData.subscribe((scores) => {
+        const tech = this.calcSkill(scores, 10);
+        const techStandard = this.calcSkill(scores, 9, 12);
+        const standard = this.calcSkill(scores, 5, 10);
+        const standardTrue = this.calcSkill(scores, 3, 6);
+        const trueAcc = this.calcSkill(scores, -100, 4);
+        this.playerSkill = [{ data: [tech, techStandard, standard, standardTrue, trueAcc] }];
+      });
       this.profileService.getPlayerInfo(playerId).subscribe((player) => (this.playerInfo = player));
     });
+  }
+
+  calcSkill(scores: PlayerScore[], minTech: number, maxTech: number = 100): number {
+    const playerScores = scores.filter((s) => minTech <= s.techyness && s.techyness <= maxTech);
+    return Math.max(
+      Math.round(
+        (playerScores.reduce((sum, current) => sum + current.ap, 0) / playerScores.length - 200) /
+          0.6
+      ),
+      0
+    );
   }
 
   ngOnInit(): void {}

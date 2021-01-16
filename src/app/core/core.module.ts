@@ -22,6 +22,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { HeaderButtonComponent } from './components/header-button/header-button.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
+import { ChartsModule } from 'ng2-charts';
 
 const routes: Routes = [
   { path: '', redirectTo: 'leaderboard', pathMatch: 'full' },
@@ -29,7 +30,7 @@ const routes: Routes = [
   { path: 'ranked-maps', component: RankedMapsComponent },
   { path: 'map-leaderboards/:leaderboardId', component: MapLeaderboardComponent },
   { path: 'player-profile/:playerId', component: ProfileComponent },
-  // { path: 'staff-login', component: StaffLoginComponent },
+  { path: 'staff-login', component: StaffLoginComponent },
   // { path: 'bi-weekly-challenge', component: BiWeeklyChallengeComponent },
 ];
 
@@ -60,6 +61,7 @@ const routes: Routes = [
     MatIconModule,
     MatTooltipModule,
     MatSelectModule,
+    ChartsModule
   ],
 })
 export class CoreModule {}

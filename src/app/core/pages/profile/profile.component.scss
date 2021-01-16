@@ -31,10 +31,11 @@
   button {
     width: 200px;
     place-self: flex-end;
+    position: absolute;
   }
 
   div {
-    margin: auto;
+    height: 100%;
   }
 }
 
