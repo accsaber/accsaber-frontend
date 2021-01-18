@@ -9,6 +9,9 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Injectable } from '@angular/core';
+import { clearToken, getToken } from '../utlis/global-utils';
+import { showError } from '../utlis/snackbar-utils';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -20,13 +23,24 @@ export class AccsaberHttpInterceptor implements HttpInterceptor {
     '00100': 'The requested player could not be found',
   };
 
-  constructor(private snackBar: MatSnackBar) {}
+  constructor(private snackBar: MatSnackBar, private router: Router) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return next.handle(req).pipe(
+    const token = getToken();
+    let newHeaders = req.headers;
+    if (token) {
+      newHeaders = newHeaders.append('Authorization', token);
+    }
+    const authReq = req.clone({ headers: newHeaders });
+    return next.handle(authReq).pipe(
       catchError((err: HttpErrorResponse) => {
         if (err.status === 400) {
-          this.snackBar.open(this.errorMap[err.error.errorCode], null, { panelClass: 'error' });
+          showError(this.snackBar, this.errorMap[err.error.errorCode]);
+        }
+        if (err.status === 401 || err.status === 403) {
+          showError(this.snackBar, 'Authentication error, request did not succeed');
+          clearToken();
+          this.router.navigateByUrl('');
         }
         return throwError(err);
       })

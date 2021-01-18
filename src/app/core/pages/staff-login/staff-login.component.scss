@@ -1,0 +1,30 @@
+@import "~@angular/material/_theming.scss";
+
+.login-field {
+  display: flex;
+  height: 100%;
+
+  div {
+    @include mat-elevation(5);
+    position: relative;
+
+    margin: auto;
+    height: 200px;
+    width: 300px;
+    border-radius: 7px;
+    padding: 20px;
+
+    form {
+      display: flex;
+      flex-direction: column;
+
+      mat-form-field {
+        width: 100%;
+      }
+      button {
+        width: 150px;
+        place-self: flex-end;
+      }
+    }
+  }
+}

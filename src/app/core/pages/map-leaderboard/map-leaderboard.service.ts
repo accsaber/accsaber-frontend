@@ -20,4 +20,10 @@ export class MapLeaderboardService {
   getMapData(leaderboardId: string): Observable<RankedMap> {
     return this.http.get<RankedMap>(`${environment.apiUrl}/ranked-maps/${leaderboardId}`);
   }
+
+  getAccHistory(playerId: string, leaderboardId: string): Observable<{ [n: string]: number }> {
+    return this.http.get<{ [n: string]: number }>(
+      `${environment.apiUrl}/players/${playerId}/score-history/${leaderboardId}`
+    );
+  }
 }

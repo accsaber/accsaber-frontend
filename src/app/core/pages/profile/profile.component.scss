@@ -21,7 +21,7 @@
 }
 
 .player-details {
-  @include mat-elevation(5);
+  @include mat-elevation(15);
   grid-area: playerdetails;
   padding: 10px;
   border-radius: 5px;
@@ -36,6 +36,8 @@
 
   div {
     height: 100%;
+    //width: fit-content;
+    min-width: 0;
   }
 }
 

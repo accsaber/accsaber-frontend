@@ -1,16 +1,23 @@
 <div class="grid-container">
   <div class="map-info">
-    <h2>{{ mapInfo.songName }} - {{ mapInfo.songAuthorName }}</h2>
-    <p>Difficulty: {{ capitalize(mapInfo.difficulty) }}</p>
-    <p>Mapped by: {{ mapInfo.levelAuthorName }}</p>
-    <p>Techyness: {{ mapInfo.techyness }}</p>
+    <h2>{{ mapInfo?.songName }} - {{ mapInfo?.songAuthorName }}</h2>
+    <p>Difficulty: {{ capitalize(mapInfo?.difficulty) }}</p>
+    <p>Mapped by: {{ mapInfo?.levelAuthorName }}</p>
+    <p>Techyness: {{ mapInfo?.techyness }}</p>
     <p>(more info coming soon)</p>
   </div>
-  <div class="player-info">(soon)</div>
+  <div class="player-info">
+    <canvas
+      baseChart
+      chartType="line"
+      [data]="accuracyHistoryData"
+      [labels]="accuracyHistoryDates"
+      [options]="accuracyHistoryOptions"
+    ></canvas></div>
   <ag-grid-angular
     [gridOptions]="gridOptions"
     [rowData]="rowData | async"
     (rowDataChanged)="resizeGrid()"
-    class="ag-theme-material scores"
+    class="scores"
   ></ag-grid-angular>
 </div>

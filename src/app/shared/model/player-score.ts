@@ -1,5 +1,5 @@
 export interface PlayerScore {
-  rank: string;
+  rank: number;
   ap: number;
   score: number;
   accuracy: number;

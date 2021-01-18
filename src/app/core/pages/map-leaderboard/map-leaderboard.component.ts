@@ -4,9 +4,12 @@ import { MapLeaderboardService } from './map-leaderboard.service';
 import { MapLeaderboardPlayer } from '../../../shared/model/map-leaderboard-player';
 import { Observable } from 'rxjs';
 import { GridOptions, NumberFilter } from 'ag-grid-community';
-import { accValueFormatter, capitalize, getPlayerId } from '../../../shared/utlis/global-utils';
+import { capitalize, getPlayerId } from '../../../shared/utlis/global-utils';
 import { RankedMap } from '../../../shared/model/ranked-map';
-import { GridLinkComponent } from '../../components/grid-link/grid-link.component';
+import { getBaseGridOptions } from '../../../shared/utlis/grid-utils';
+import { SingleDataSet } from 'ng2-charts';
+import { ChartOptions } from 'chart.js';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-map-leaderboard',
@@ -17,54 +20,36 @@ export class MapLeaderboardComponent implements OnInit {
   rowData: Observable<MapLeaderboardPlayer[]>;
   mapInfo: RankedMap;
 
-  gridOptions: GridOptions = {
-    pagination: true,
-    paginationAutoPageSize: true,
-    suppressCellSelection: true,
-    enableCellTextSelection: true,
-    getRowStyle: (params) =>
-      params.data.playerId === getPlayerId() ? { background: 'lightgreen' } : {},
-    defaultColDef: {
-      sortable: true,
-      filter: true,
-      filterParams: {
-        suppressAndOrCondition: true,
-        buttons: ['clear'],
-      },
-      suppressSizeToFit: true,
+  accuracyHistoryData = [];
+  accuracyHistoryDates = [];
+  accuracyHistoryOptions: ChartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    legend: { display: false },
+    scales: {
+      yAxes: [
+        {
+          display: true,
+          scaleLabel: { labelString: 'Accuracy', display: true },
+        },
+      ],
+      xAxes: [
+        {
+          scaleLabel: { labelString: 'Date Set', display: true },
+        },
+      ],
     },
-    columnTypes: {
-      finalColumn: {
-        suppressSizeToFit: false,
-        suppressAutoSize: true,
-        suppressMenu: true,
-        sortable: false,
-      },
-    },
-    columnDefs: [
-      { field: 'rank', filter: NumberFilter },
-      {
-        headerName: 'Player Name',
-        field: 'playerName',
-        cellRendererFramework: GridLinkComponent,
-        cellRendererParams: { link: '/player-profile', accessor: 'playerId' },
-      },
-      {
-        field: 'ap',
-        headerName: 'AP',
-        filter: NumberFilter,
-        valueFormatter: (params) => params.value.toFixed(2),
-      },
-      { field: 'score', filter: NumberFilter },
-      {
-        field: 'accuracy',
-        valueGetter: (params) => params.data.accuracy * 100,
-        valueFormatter: (params) => accValueFormatter(params),
-        filter: NumberFilter,
-      },
-      { field: '', type: 'finalColumn' },
-    ],
   };
+
+  gridOptions: GridOptions = getBaseGridOptions([
+    { type: 'rank' },
+    { type: 'playerName' },
+    { field: '', type: 'stretchColumn' },
+    { type: 'timeSet' },
+    { type: 'accuracy' },
+    { type: 'ap' },
+    { field: 'score', filter: NumberFilter },
+  ]);
 
   constructor(
     private route: ActivatedRoute,
@@ -75,9 +60,14 @@ export class MapLeaderboardComponent implements OnInit {
     this.route.params.subscribe((params) => {
       const leaderboardId = params.leaderboardId;
       this.rowData = this.mapLeaderboardService.getMapLeaderboard(leaderboardId);
-      this.mapLeaderboardService
-        .getMapData(leaderboardId)
-        .subscribe((rankedMap) => (this.mapInfo = rankedMap));
+      this.mapLeaderboardService.getMapData(leaderboardId).subscribe((rankedMap) => {
+        this.mapInfo = rankedMap;
+
+        const playerId = getPlayerId();
+        if (playerId) {
+          this.parseHistory(playerId, leaderboardId);
+        }
+      });
     });
   }
 
@@ -88,5 +78,24 @@ export class MapLeaderboardComponent implements OnInit {
 
   capitalize(difficulty: string): string {
     return capitalize(difficulty);
+  }
+
+  // TODO kinda eww
+  private parseHistory(playerId: string, leaderboardId: string): void {
+    this.mapLeaderboardService.getAccHistory(playerId, leaderboardId).subscribe((history) => {
+      if (Object.keys(history).length === 0) {
+        return;
+      }
+      const keys = Object.keys(history).sort((r, v) => (moment(r) > moment(v) ? 1 : -1));
+      this.accuracyHistoryDates = keys.map((s) => moment(s).fromNow());
+      this.accuracyHistoryData = keys.map((t) => (history[t] * 100).toFixed(2));
+      this.rowData.subscribe((r) => {
+        const mapLeaderboardPlayer = r.find((layerScore) => getPlayerId() === layerScore.playerId);
+        if (mapLeaderboardPlayer) {
+          this.accuracyHistoryDates.push(moment(mapLeaderboardPlayer.timeSet).fromNow());
+          this.accuracyHistoryData.push((mapLeaderboardPlayer.accuracy * 100).toFixed(2));
+        }
+      });
+    });
   }
 }

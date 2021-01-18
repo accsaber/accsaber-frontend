@@ -1,13 +1,17 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row class="mat-elevation-z5">
+<mat-toolbar color="primary" class="mat-elevation-z5">
+  <mat-toolbar-row>
     <button mat-icon-button (click)="sidenav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
     <div class="spacer"></div>
+    <button mat-icon-button matTooltip="Switch theme" (click)="this.switchTheme()" class="theme-switcher">
+      <mat-icon>palette</mat-icon>
+    </button>
     <button mat-button (click)="showSignupDialog()" *ngIf="!playerName">Sign up</button>
     <div *ngIf="!!playerName" class="player" [routerLink]="'player-profile/' + playerId" mat-ripple>
       <p>{{ playerName }}</p>
-      <!--      <img src="https://scoresaber.com/imports/images/usr-avatars/{{ playerId }}.jpg" /> Disabled for now until avatars are mirrored to not put additional stress on scoresaber-->
+      <!--      <img src="https://scoresaber.com/imports/images/usr-avatars/{{ playerId }}.jpg" />-->
+      <!--      Disabled for now until avatars are mirrored to not put additional stress on scoresaber-->
     </div>
   </mat-toolbar-row>
 </mat-toolbar>

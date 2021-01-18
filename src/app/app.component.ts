@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { SignUpComponent } from './core/components/sign-up/sign-up.component';
 import { environment } from '../environments/environment';
-import { getPlayerId, getPlayerName } from './shared/utlis/global-utils';
+import { getPlayerId, getPlayerName, getTheme, setTheme } from './shared/utlis/global-utils';
 
 @Component({
   selector: 'app-root',
@@ -17,16 +17,20 @@ export class AppComponent {
   links = [
     { linkName: 'Leaderboard', linkPath: '/leaderboard' },
     { linkName: 'Ranked Maps', linkPath: '/ranked-maps' },
-    { linkName: 'Biweekly Challenge (soon)', linkPath: '/weekly-challenge', disable: true },
-    { linkName: 'Staff Login (soon)', linkPath: '/staff-login', last: true },
+    // { linkName: 'Biweekly Challenge (soon)', linkPath: '/weekly-challenge', disable: true },
+    // { linkName: 'Staff Login (soon)', linkPath: '/staff-login', last: true },
   ];
   isBeta: boolean;
 
-  constructor(private dialog: MatDialog) {
+  constructor(private dialog: MatDialog, private renderer: Renderer2) {
     this.isBeta = environment.isBeta;
 
     this.playerName = getPlayerName();
     this.playerId = getPlayerId();
+
+    if (getTheme() === 'dark') {
+      this.setDarkTheme();
+    }
   }
 
   showSignupDialog(): void {
@@ -35,5 +39,25 @@ export class AppComponent {
       width: '500px',
     };
     this.dialog.open(SignUpComponent, config);
+  }
+
+  switchTheme(): void {
+    if (getTheme() === 'light') {
+      this.setDarkTheme();
+      setTheme('dark');
+    } else {
+      this.setLightTheme();
+      setTheme('light');
+    }
+  }
+
+  setDarkTheme(): void {
+    this.renderer.addClass(document.body, 'dark-theme');
+    this.renderer.removeClass(document.body, 'light-theme');
+  }
+
+  setLightTheme(): void {
+    this.renderer.removeClass(document.body, 'dark-theme');
+    this.renderer.addClass(document.body, 'light-theme');
   }
 }

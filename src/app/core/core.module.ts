@@ -11,7 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { SharedModule } from '../shared/shared.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatListModule } from '@angular/material/list';
 import { MapLeaderboardComponent } from './pages/map-leaderboard/map-leaderboard.component';
 import { GridButtonComponent } from './components/grid-button/grid-button.component';
@@ -48,20 +48,21 @@ const routes: Routes = [
     TechynessComponent,
     ProfileComponent,
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    AgGridModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatInputModule,
-    SharedModule,
-    FormsModule,
-    MatListModule,
-    MatIconModule,
-    MatTooltipModule,
-    MatSelectModule,
-    ChartsModule
-  ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        AgGridModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        MatInputModule,
+        SharedModule,
+        FormsModule,
+        MatListModule,
+        MatIconModule,
+        MatTooltipModule,
+        MatSelectModule,
+        ChartsModule,
+        ReactiveFormsModule
+    ],
 })
 export class CoreModule {}

@@ -12,10 +12,12 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from '@angular/material/dialog';
-import { AccsaberHttpInterceptor } from './shared/accsaber-http-interceptor';
+import { AccsaberHttpInterceptor } from './shared/auth/accsaber-http-interceptor';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRippleModule } from '@angular/material/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,6 +36,8 @@ import { MatRippleModule } from '@angular/material/core';
     MatSnackBarModule,
     MatSelectModule,
     MatRippleModule,
+    MatTooltipModule,
+    SharedModule,
   ],
   providers: [
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },

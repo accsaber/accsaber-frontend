@@ -23,6 +23,7 @@
   grid-area: playerinfo;
   padding: 10px;
   border-radius: 5px;
+  min-width: 0;
 }
 .scores {
   @include mat-elevation(5);
