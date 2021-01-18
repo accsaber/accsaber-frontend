@@ -4,14 +4,14 @@ import { ChartOptions } from 'chart.js';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RankSongService } from './rank-song.service';
 import { RankSongDto } from '../../../shared/model/rank-song-dto';
-import { showInfo } from '../../../shared/utlis/snackbar-utils';
+import { showError, showInfo } from '../../../shared/utlis/snackbar-utils';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { RankedStatistics } from '../../../shared/model/ranked-statistics';
 
 function getValues(): number[] {
   const start = 96;
   const end = 100;
-  const increment = 0.25;
+  const increment = 0.125;
 
   const values = [];
   for (let i = start; i <= end; i += increment) {
@@ -95,10 +95,19 @@ export class RankSongComponent implements OnInit {
     const rankSongInfo: RankSongDto = this.rankForm.getRawValue();
     rankSongInfo.techyness = this.techyness;
     console.log(rankSongInfo);
-    this.rankSongService.rankSong(rankSongInfo).subscribe(() => {
-      showInfo(this.snackbar, 'Successfully ranked map');
-      this.loadStatistics();
-    });
+    this.rankSongService.rankSong(rankSongInfo).subscribe(
+      () => {
+        showInfo(this.snackbar, 'Successfully ranked map');
+        this.loadStatistics();
+        this.rankForm.reset();
+        this.rankForm.markAsUntouched();
+      },
+      () =>
+        showError(
+          this.snackbar,
+          'An error occurred while ranking the map. No further info is available'
+        )
+    );
   }
 
   private loadStatistics(): void {

@@ -7,7 +7,6 @@ import { GridOptions, NumberFilter } from 'ag-grid-community';
 import { capitalize, getPlayerId } from '../../../shared/utlis/global-utils';
 import { RankedMap } from '../../../shared/model/ranked-map';
 import { getBaseGridOptions } from '../../../shared/utlis/grid-utils';
-import { SingleDataSet } from 'ng2-charts';
 import { ChartOptions } from 'chart.js';
 import * as moment from 'moment';
 
@@ -92,6 +91,9 @@ export class MapLeaderboardComponent implements OnInit {
       this.rowData.subscribe((r) => {
         const mapLeaderboardPlayer = r.find((layerScore) => getPlayerId() === layerScore.playerId);
         if (mapLeaderboardPlayer) {
+          if (keys.includes(mapLeaderboardPlayer.timeSet)) {
+            return;
+          }
           this.accuracyHistoryDates.push(moment(mapLeaderboardPlayer.timeSet).fromNow());
           this.accuracyHistoryData.push((mapLeaderboardPlayer.accuracy * 100).toFixed(2));
         }
