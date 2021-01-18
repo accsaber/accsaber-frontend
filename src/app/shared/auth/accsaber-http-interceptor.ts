@@ -1,10 +1,5 @@
-import {
-  HttpErrorResponse,
-  HttpEvent,
-  HttpHandler,
-  HttpInterceptor,
-  HttpRequest,
-} from '@angular/common/http';
+/* tslint:disable:object-literal-key-quotes */
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -21,6 +16,7 @@ export class AccsaberHttpInterceptor implements HttpInterceptor {
     '00001': 'The linked Scoresaber account is already signed up.',
     '00002': 'The provided map is already ranked.',
     '00100': 'The requested player could not be found',
+    '10000': 'Authentication error, request did not succeed',
   };
 
   constructor(private snackBar: MatSnackBar, private router: Router) {}
@@ -38,7 +34,7 @@ export class AccsaberHttpInterceptor implements HttpInterceptor {
           showError(this.snackBar, this.errorMap[err.error.errorCode]);
         }
         if (err.status === 401 || err.status === 403) {
-          showError(this.snackBar, 'Authentication error, request did not succeed');
+          showError(this.snackBar, this.errorMap[err.error.errorCode]);
           clearToken();
           this.router.navigateByUrl('');
         }
