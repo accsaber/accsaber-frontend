@@ -45,6 +45,21 @@ body {
     text-align: center;
     text-shadow: 0 0 1px white, 0 0 3px white, 0 0 5px white;
   }
+
+  .info {
+    color: black;
+    background: #66ea66;
+  }
+
+  .warn {
+    color: black;
+    background: #fffb00;
+  }
+
+  .error {
+    color: white;
+    background: #c71515;
+  }
 }
 
 .dark-theme {
@@ -76,6 +91,21 @@ body {
     width: inherit;
     text-align: center;
     text-shadow: 0 0 1px black, 0 0 3px black, 0 0 5px black;
+  }
+
+  .info {
+    color: black;
+    background: #66ea66;
+  }
+
+  .warn {
+    color: black;
+    background: #fffb00;
+  }
+
+  .error {
+    color: white;
+    background: #c71515;
   }
 }
 
@@ -111,7 +141,7 @@ body {
     }
   }
 }
-
+// FIXME these styles don't work anymore
 .info {
   background: #66ea66;
 }
