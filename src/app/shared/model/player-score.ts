@@ -1,5 +1,5 @@
 export interface PlayerScore {
-  rank: string;
+  rank: number;
   ap: number;
   score: number;
   accuracy: number;
@@ -7,7 +7,7 @@ export interface PlayerScore {
   songName: string;
   songAuthorName: string;
   levelAuthorName: string;
-  techyness: string;
+  techyness: number;
 
   difficulty: string;
   leaderboardId: string;

@@ -11,7 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { SharedModule } from '../shared/shared.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatListModule } from '@angular/material/list';
 import { MapLeaderboardComponent } from './pages/map-leaderboard/map-leaderboard.component';
 import { GridButtonComponent } from './components/grid-button/grid-button.component';
@@ -22,6 +22,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { HeaderButtonComponent } from './components/header-button/header-button.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
+import { ChartsModule } from 'ng2-charts';
 
 const routes: Routes = [
   { path: '', redirectTo: 'leaderboard', pathMatch: 'full' },
@@ -29,7 +30,7 @@ const routes: Routes = [
   { path: 'ranked-maps', component: RankedMapsComponent },
   { path: 'map-leaderboards/:leaderboardId', component: MapLeaderboardComponent },
   { path: 'player-profile/:playerId', component: ProfileComponent },
-  // { path: 'staff-login', component: StaffLoginComponent },
+  { path: 'staff-login', component: StaffLoginComponent },
   // { path: 'bi-weekly-challenge', component: BiWeeklyChallengeComponent },
 ];
 
@@ -47,19 +48,21 @@ const routes: Routes = [
     TechynessComponent,
     ProfileComponent,
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    AgGridModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatInputModule,
-    SharedModule,
-    FormsModule,
-    MatListModule,
-    MatIconModule,
-    MatTooltipModule,
-    MatSelectModule,
-  ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        AgGridModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        MatInputModule,
+        SharedModule,
+        FormsModule,
+        MatListModule,
+        MatIconModule,
+        MatTooltipModule,
+        MatSelectModule,
+        ChartsModule,
+        ReactiveFormsModule
+    ],
 })
 export class CoreModule {}

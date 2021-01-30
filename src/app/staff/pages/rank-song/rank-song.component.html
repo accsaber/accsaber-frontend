@@ -1,0 +1,73 @@
+<div class="grid-container">
+  <div class="rank-form">
+    <form [formGroup]="rankForm">
+      <mat-form-field>
+        <mat-label>Leaderboard ID</mat-label>
+        <input matInput formControlName="leaderboardId" type="number" />
+        <mat-error *ngIf="rankForm.controls['leaderboardId'].invalid"
+          >Please enter a leaderboard id</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Beatsaver Key</mat-label>
+        <input matInput formControlName="beatSaverKey" />
+        <mat-error *ngIf="rankForm.controls['beatSaverKey'].invalid"
+          >Please enter a BeatSaver Key</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Difficulty</mat-label>
+        <mat-select formControlName="difficulty">
+          <mat-option value="easy">Easy</mat-option>
+          <mat-option value="normal">Normal</mat-option>
+          <mat-option value="hard">Hard</mat-option>
+          <mat-option value="expert">Expert</mat-option>
+          <mat-option value="expertPlus">Expert+</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+
+    <mat-form-field>
+      <mat-label>Techyness</mat-label>
+      <input
+        matInput
+        (change)="this.recalculateTechynessValues()"
+        [(ngModel)]="techyness"
+        type="number"
+      />
+    </mat-form-field>
+
+    <mat-slider
+      thumbLabel
+      min="0"
+      max="15"
+      (change)="this.recalculateTechynessValues()"
+      [(ngModel)]="techyness"
+    ></mat-slider>
+    <div class="spacer"></div>
+    <button mat-raised-button [disabled]="!rankForm.valid" (click)="rankSong()">Rank</button>
+  </div>
+
+  <div class="ranked-maps-info">
+
+      <canvas
+        baseChart
+        chartType="bar"
+        [data]="rankedCount"
+        [labels]="rankedTechyness"
+        [options]="rankedStatsOptions"
+      ></canvas>
+
+  </div>
+  <div class="techyness">
+    <canvas
+      baseChart
+      chartType="line"
+      [data]="techynessSet"
+      [labels]="techynessLabels"
+      [options]="techynessOptions"
+    ></canvas>
+  </div>
+</div>

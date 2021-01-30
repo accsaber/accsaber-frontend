@@ -1,0 +1,55 @@
+@import "~@angular/material/_theming.scss";
+
+.grid-container {
+  display: grid;
+
+  padding: 20px;
+  height: calc(100% - 65px);
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 45% 55%;
+  gap: 15px 15px;
+  grid-template-areas:
+    "rankform rankedmapinfo"
+    "techyness techyness";
+}
+
+.rank-form {
+  @include mat-elevation(5);
+  grid-area: rankform;
+  padding: 15px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  mat-slider {
+    width: 100%;
+  }
+  button {
+    width: 200px;
+    place-self: flex-end;
+  }
+}
+
+.ranked-maps-info {
+  @include mat-elevation(5);
+  grid-area: rankedmapinfo;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+}
+
+.techyness {
+  @include mat-elevation(5);
+  grid-area: techyness;
+  border-radius: 5px;
+  padding: 10px;
+
+  min-width: 0;
+}

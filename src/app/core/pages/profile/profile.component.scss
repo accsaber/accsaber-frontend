@@ -21,7 +21,7 @@
 }
 
 .player-details {
-  @include mat-elevation(5);
+  @include mat-elevation(15);
   grid-area: playerdetails;
   padding: 10px;
   border-radius: 5px;
@@ -31,10 +31,13 @@
   button {
     width: 200px;
     place-self: flex-end;
+    position: absolute;
   }
 
   div {
-    margin: auto;
+    height: 100%;
+    //width: fit-content;
+    min-width: 0;
   }
 }
 
