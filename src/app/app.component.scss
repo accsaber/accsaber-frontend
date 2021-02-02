@@ -12,7 +12,20 @@
 }
 
 .theme-switcher {
-  margin-right: 15px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 10000;
+
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.accsaber-icon {
+  height: 50px;
+}
+.links {
+  font-size: 20px;
 }
 
 .player {

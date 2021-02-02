@@ -23,6 +23,7 @@ import { HeaderButtonComponent } from './components/header-button/header-button.
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
 import { ChartsModule } from 'ng2-charts';
+import { GridImageComponent } from './components/grid-avatar/grid-image.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'leaderboard', pathMatch: 'full' },
@@ -47,6 +48,7 @@ const routes: Routes = [
     GridLinkComponent,
     TechynessComponent,
     ProfileComponent,
+    GridImageComponent,
   ],
     imports: [
         CommonModule,

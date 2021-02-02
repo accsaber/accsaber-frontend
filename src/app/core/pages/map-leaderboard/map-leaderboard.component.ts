@@ -42,8 +42,8 @@ export class MapLeaderboardComponent implements OnInit {
 
   gridOptions: GridOptions = getBaseGridOptions([
     { type: 'rank' },
+    { type: 'avatar' },
     { type: 'playerName' },
-    { field: '', type: 'stretchColumn' },
     { type: 'timeSet' },
     { type: 'accuracy' },
     { type: 'ap' },
@@ -68,11 +68,6 @@ export class MapLeaderboardComponent implements OnInit {
         }
       });
     });
-  }
-
-  resizeGrid(): void {
-    this.gridOptions.columnApi.autoSizeAllColumns();
-    this.gridOptions.api.sizeColumnsToFit();
   }
 
   capitalize(difficulty: string): string {

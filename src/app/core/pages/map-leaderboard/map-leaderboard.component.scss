@@ -17,6 +17,39 @@
   grid-area: mapinfo;
   padding: 10px;
   border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+
+  .map-info-details {
+    display: flex;
+
+    .song-cover img {
+      max-height: 200px;
+      vertical-align: middle;
+      border-radius: 3px;
+      margin-right: 10px;
+    }
+    .details {
+      h2 {
+        margin-bottom: 0;
+      }
+      p {
+        margin: 0 0 10px;
+        padding: 0;
+      }
+    }
+  }
+
+  .buttons {
+    place-self: flex-end;
+    position: absolute;
+    .beatsaver {
+      color: black;
+    }
+    .scoresaber {
+      color: #e9d409;
+    }
+  }
 }
 .player-info {
   @include mat-elevation(5);

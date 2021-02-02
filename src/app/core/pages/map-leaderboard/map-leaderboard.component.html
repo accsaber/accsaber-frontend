@@ -1,10 +1,38 @@
 <div class="grid-container">
   <div class="map-info">
-    <h2>{{ mapInfo?.songName }} - {{ mapInfo?.songAuthorName }}</h2>
-    <p>Difficulty: {{ capitalize(mapInfo?.difficulty) }}</p>
-    <p>Mapped by: {{ mapInfo?.levelAuthorName }}</p>
-    <p>Techyness: {{ mapInfo?.techyness }}</p>
-    <p>(more info coming soon)</p>
+    <div class="map-info-details" *ngIf="!!mapInfo">
+      <div class="song-cover">
+        <img
+          src="https://new.scoresaber.com/api/static/covers/{{
+            mapInfo.songHash.toUpperCase()
+          }}.png"
+          alt="song-cover"
+        />
+      </div>
+      <div class="details">
+        <h2>{{ mapInfo.songName }} - {{ mapInfo.songAuthorName }}</h2>
+        <p>{{ capitalize(mapInfo.difficulty) }} | Mapped by: {{ mapInfo.levelAuthorName }}</p>
+        <app-techyness [value]="mapInfo.techyness"></app-techyness>
+      </div>
+    </div>
+    <div class="buttons">
+      <a
+        mat-icon-button
+        class="beatsaver"
+        href="https://beatsaver.com/beatmap/{{ mapInfo?.beatsaverKey }}"
+        target="_blank"
+        matTooltip="Go to BeatSaver"
+        ><mat-icon>archive</mat-icon></a
+      >
+      <a
+        mat-icon-button
+        class="scoresaber"
+        href="https://scoresaber.com/leaderboard/{{ mapInfo?.leaderboardId }}"
+        target="_blank"
+        matTooltip="Go to ScoreSaber leaderboard"
+        ><mat-icon svgIcon="scoresaberLogo"></mat-icon
+      ></a>
+    </div>
   </div>
   <div class="player-info">
     <canvas
@@ -13,11 +41,11 @@
       [data]="accuracyHistoryData"
       [labels]="accuracyHistoryDates"
       [options]="accuracyHistoryOptions"
-    ></canvas></div>
+    ></canvas>
+  </div>
   <ag-grid-angular
     [gridOptions]="gridOptions"
     [rowData]="rowData | async"
-    (rowDataChanged)="resizeGrid()"
     class="scores"
   ></ag-grid-angular>
 </div>

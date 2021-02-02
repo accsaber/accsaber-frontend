@@ -4,6 +4,7 @@ import { TechynessComponent } from '../../core/components/techyness/techyness.co
 import { GridButtonComponent } from '../../core/components/grid-button/grid-button.component';
 import { capitalize, getPlayerId } from './global-utils';
 import * as moment from 'moment';
+import { GridImageComponent } from '../../core/components/grid-avatar/grid-image.component';
 
 export function accValueFormatter(params: ValueFormatterParams): string {
   return `${params.value.toFixed(2)}%`;
@@ -39,7 +40,6 @@ export function getBaseGridOptions(colDefs: ColDef[]): GridOptions {
         suppressAndOrCondition: true,
         buttons: ['clear'],
       },
-      suppressSizeToFit: true,
     },
     columnTypes: getColTypes(),
     columnDefs: colDefs,
@@ -48,12 +48,6 @@ export function getBaseGridOptions(colDefs: ColDef[]): GridOptions {
 
 export function getColTypes(): { [key: string]: ColDef } {
   return {
-    stretchColumn: {
-      suppressSizeToFit: false,
-      suppressAutoSize: true,
-      suppressMenu: true,
-      sortable: false,
-    },
     ap: {
       field: 'ap',
       headerName: 'AP',
@@ -63,10 +57,14 @@ export function getColTypes(): { [key: string]: ColDef } {
       cellStyle: () => {
         return { color: getApColor() };
       },
+      minWidth: 100,
+      flex: 0.3,
     },
     rank: {
       field: 'rank',
       filter: NumberFilter,
+      minWidth: 100,
+      flex: 0.2,
     },
     accuracy: {
       field: 'accuracy',
@@ -74,40 +72,68 @@ export function getColTypes(): { [key: string]: ColDef } {
       valueFormatter: (params) => accValueFormatter(params),
       filter: NumberFilter,
       sortingOrder: ['desc', 'asc', ''],
+      minWidth: 150,
+      flex: 0.2,
     },
     techyness: {
       field: 'techyness',
       headerName: 'Techyness',
       filter: NumberFilter,
       cellRendererFramework: TechynessComponent,
+      flex: 0.5,
+      minWidth: 150,
     },
     song: {
       headerName: 'Song',
       valueGetter: (params) => songNameValueGetter(params.data),
       cellRendererFramework: GridLinkComponent,
       cellRendererParams: { link: '/map-leaderboards', accessor: 'leaderboardId' },
-      type: 'stretchColumn',
+      flex: 1,
+      minWidth: 300,
     },
     playerName: {
       headerName: 'Player Name',
       field: 'playerName',
       cellRendererFramework: GridLinkComponent,
       cellRendererParams: { link: '/player-profile', accessor: 'playerId' },
+      flex: 0.5,
+      minWidth: 200,
     },
     difficulty: {
       field: 'difficulty',
       valueFormatter: (params) => capitalize(params.value),
+      minWidth: 125,
+      flex: 0.3,
     },
     button: {
       cellRendererFramework: GridButtonComponent,
       sortable: false,
       filter: false,
       suppressMenu: true,
+      width: 75,
     },
     timeSet: {
       field: 'timeSet',
       valueGetter: (params) => moment(params.data.timeSet),
       valueFormatter: (params) => params.value.fromNow(),
+      minWidth: 200,
+      flex: 0.4,
+    },
+    avatar: {
+      cellRendererFramework: GridImageComponent,
+      field: 'avatarUrl',
+      headerName: '',
+      sortable: false,
+      filter: false,
+      width: 72,
+    },
+    songCoverArt: {
+      cellRendererFramework: GridImageComponent,
+      valueGetter: (params) => `/api/static/covers/${params.data.songHash.toUpperCase()}.png`,
+      headerName: '',
+      sortable: false,
+      filter: false,
+      width: 72,
     },
   };
 }

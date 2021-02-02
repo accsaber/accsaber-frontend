@@ -16,8 +16,45 @@
 .player-info {
   @include mat-elevation(5);
   grid-area: playerinfo;
+  display: flex;
+  flex-direction: column;
+
   padding: 10px;
   border-radius: 5px;
+
+  margin-right: 10px;
+
+  .player-info-details {
+    display: flex;
+  }
+
+  .avatar img {
+    height: 100px;
+    vertical-align: middle;
+    border-radius: 3px;
+
+    margin-right: 10px;
+  }
+
+  .details {
+    p {
+      margin: auto;
+      padding: 0;
+    }
+  }
+  a {
+    place-self: flex-end;
+    position: absolute;
+    mat-icon {
+      color: #e9d409;
+    }
+  }
+  min-width: 0;
+  .rank-history {
+    min-height: 0;
+    margin-top: 20px;
+    flex: 1;
+  }
 }
 
 .player-details {
@@ -28,6 +65,8 @@
   display: flex;
   flex-direction: column;
 
+  min-width: 0;
+
   button {
     width: 200px;
     place-self: flex-end;
@@ -36,8 +75,6 @@
 
   div {
     height: 100%;
-    //width: fit-content;
-    min-width: 0;
   }
 }
 

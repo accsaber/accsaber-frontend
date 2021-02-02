@@ -37,13 +37,8 @@ body {
   }
 
   .contrast-rich-text {
-    color: black;
-    position: absolute;
-    top: 0;
-    margin: 0;
-    width: inherit;
-    text-align: center;
     text-shadow: 0 0 1px white, 0 0 3px white, 0 0 5px white;
+    color: black;
   }
 
   .info {
@@ -84,13 +79,8 @@ body {
   }
 
   .contrast-rich-text {
-    color: white;
-    position: absolute;
-    top: 0;
-    margin: 0;
-    width: inherit;
-    text-align: center;
     text-shadow: 0 0 1px black, 0 0 3px black, 0 0 5px black;
+    color: white;
   }
 
   .info {
@@ -114,7 +104,6 @@ body {
 }
 
 .accsaber-page {
-  @include mat-elevation(5);
   position: relative;
 
   margin: 20px;
@@ -123,9 +112,9 @@ body {
   border-radius: 7px;
 
   ag-grid-angular {
+    @include mat-elevation(5);
     height: 100%;
     width: 100%;
-    border-radius: 7px;
   }
 }
 

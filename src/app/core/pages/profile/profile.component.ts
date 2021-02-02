@@ -31,14 +31,37 @@ export class ProfileComponent implements OnInit {
     },
   };
 
+  rankHistoryData = [5, 2, 4, 1];
+  rankHistoryDates = ['3 days ago', '2 days ago', '1 day ago', 'today'];
+  rankHistoryOptions: ChartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    legend: { display: false },
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            suggestedMin: 0.5,
+            reverse: true,
+          },
+        },
+      ],
+      xAxes: [
+        {
+          scaleLabel: { labelString: 'Date Set', display: false },
+        },
+      ],
+    },
+  };
+
   playerInfo: Player;
   gridOptions: GridOptions = getBaseGridOptions([
     { type: 'rank' },
+    { type: 'songCoverArt' },
     { type: 'song' },
     { type: 'accuracy' },
     { type: 'ap' },
     { type: 'timeSet' },
-    { type: 'stretchColumn' },
     { type: 'difficulty' },
     { type: 'techyness' },
   ]);
@@ -71,11 +94,6 @@ export class ProfileComponent implements OnInit {
       ),
       0
     );
-  }
-
-  resizeGrid(): void {
-    this.gridOptions.columnApi.autoSizeAllColumns();
-    this.gridOptions.api.sizeColumnsToFit();
   }
 
   setAsProfile(): void {

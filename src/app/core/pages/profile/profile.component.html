@@ -1,15 +1,38 @@
 <div class="grid-container">
   <div class="player-info">
-    <h2>{{ playerInfo?.playerName }}</h2>
-    <p>Rank: {{ playerInfo?.rank }}</p>
-    <p>AP: {{ playerInfo?.ap.toFixed(2) }}</p>
-    <p>Average Acc: {{ (playerInfo?.averageAcc * 100).toFixed(2) }}%</p>
-    <p>(more info coming soon)</p>
+    <div class="player-info-details">
+      <div class="avatar">
+        <img
+          src="https://scoresaber.com/imports/images/usr-avatars/{{ playerInfo?.playerId }}.jpg"
+          alt="player-avatar"
+        />
+      </div>
+      <div class="details">
+        <h3 class="header">#{{ playerInfo?.rank }} {{ playerInfo?.playerName }}</h3>
+        <p>AP: {{ playerInfo?.ap.toFixed(2) }}</p>
+        <p>Average Acc: {{ (playerInfo?.averageAcc * 100).toFixed(2) }}%</p>
+      </div>
+    </div>
+    <a
+      mat-icon-button
+      href="https://scoresaber.com/u/{{ playerInfo?.playerId }}"
+      target="_blank"
+      ><mat-icon>poll</mat-icon></a
+    >
+    <div class="rank-history">
+      <canvas
+        baseChart
+        chartType="line"
+        [data]="rankHistoryData"
+        [labels]="rankHistoryDates"
+        [options]="rankHistoryOptions"
+      ></canvas>
+    </div>
   </div>
   <div class="player-details">
     <button mat-raised-button (click)="setAsProfile()">Set as my profile</button>
     <div>
-      <canvas #adfdfd
+      <canvas
         baseChart
         [datasets]="playerSkill"
         [labels]="skillLabels"
@@ -23,7 +46,6 @@
   <ag-grid-angular
     [gridOptions]="gridOptions"
     [rowData]="rowData | async"
-    (rowDataChanged)="resizeGrid()"
     class="scores"
   ></ag-grid-angular>
 </div>
