@@ -3,7 +3,7 @@
     <button mat-icon-button (click)="sidenav.toggle()" *ngIf="false">
       <mat-icon>menu</mat-icon>
     </button>
-    <img src="assets/acc.png" class="accsaber-icon" alt="accsaber-logo" />
+    <img src="assets/acc" class="accsaber-icon" alt="accsaber-logo" />
     <button mat-button *ngFor="let link of links" [routerLink]="link.linkPath" class="links">
       {{ link.linkName }}
     </button>
