@@ -11,10 +11,7 @@
     <button mat-button (click)="showSignupDialog()" *ngIf="!playerName">Sign up</button>
     <div *ngIf="!!playerName" class="player" [routerLink]="'player-profile/' + playerId" mat-ripple>
       <p>{{ playerName }}</p>
-      <img
-        src="https://scoresaber.com/imports/images/usr-avatars/{{ playerId }}.jpg"
-        alt="player-avatar"
-      />
+      <img src="{{ imageUrl }}/avatars/{{ playerId }}.jpg" alt="player-avatar" />
     </div>
   </mat-toolbar-row>
 </mat-toolbar>

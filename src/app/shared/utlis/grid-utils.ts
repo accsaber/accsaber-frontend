@@ -121,7 +121,7 @@ export function getColTypes(): { [key: string]: ColDef } {
     },
     avatar: {
       cellRendererFramework: GridImageComponent,
-      field: 'avatarUrl',
+      valueGetter: (params) => `avatars/${params.data.playerId}.jpg`,
       headerName: '',
       sortable: false,
       filter: false,
@@ -129,7 +129,7 @@ export function getColTypes(): { [key: string]: ColDef } {
     },
     songCoverArt: {
       cellRendererFramework: GridImageComponent,
-      valueGetter: (params) => `/api/static/covers/${params.data.songHash.toUpperCase()}.png`,
+      valueGetter: (params) => `covers/${params.data.songHash.toUpperCase()}.png`,
       headerName: '',
       sortable: false,
       filter: false,

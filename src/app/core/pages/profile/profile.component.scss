@@ -29,7 +29,8 @@
   }
 
   .avatar img {
-    height: 100px;
+    height: 150px;
+    //height: 100px;
     vertical-align: middle;
     border-radius: 3px;
 
@@ -37,8 +38,11 @@
   }
 
   .details {
+    h2 {
+      margin-bottom: 0;
+    }
     p {
-      margin: auto;
+      margin: 0 0 10px;
       padding: 0;
     }
   }

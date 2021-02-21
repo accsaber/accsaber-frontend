@@ -9,6 +9,7 @@ import { Player } from '../../../shared/model/player';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { getBaseGridOptions } from '../../../shared/utlis/grid-utils';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-profile',
@@ -65,6 +66,7 @@ export class ProfileComponent implements OnInit {
     { type: 'difficulty' },
     { type: 'techyness' },
   ]);
+  imageUrl = environment.imageUrl;
 
   constructor(private route: ActivatedRoute, private profileService: ProfileService) {}
 

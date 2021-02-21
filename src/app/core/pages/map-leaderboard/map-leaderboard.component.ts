@@ -9,6 +9,7 @@ import { RankedMap } from '../../../shared/model/ranked-map';
 import { getBaseGridOptions } from '../../../shared/utlis/grid-utils';
 import { ChartOptions } from 'chart.js';
 import * as moment from 'moment';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-map-leaderboard',
@@ -16,6 +17,8 @@ import * as moment from 'moment';
   styleUrls: ['./map-leaderboard.component.scss'],
 })
 export class MapLeaderboardComponent implements OnInit {
+  imageUrl = environment.imageUrl;
+
   rowData: Observable<MapLeaderboardPlayer[]>;
   mapInfo: RankedMap;
 

@@ -3,7 +3,7 @@
     <div class="map-info-details" *ngIf="!!mapInfo">
       <div class="song-cover">
         <img
-          src="https://new.scoresaber.com/api/static/covers/{{
+          src="{{imageUrl}}/covers/{{
             mapInfo.songHash.toUpperCase()
           }}.png"
           alt="song-cover"
