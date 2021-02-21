@@ -55,6 +55,15 @@ body {
     color: white;
     background: #c71515;
   }
+
+  .acc-card {
+    @include mat-elevation(3);
+
+    border: #babfc7 solid 1px;
+
+    padding: 10px;
+    //border-radius: 5px;
+  }
 }
 
 .dark-theme {
@@ -62,6 +71,8 @@ body {
   ag-grid-angular {
     @include ag-theme-alpine-dark();
   }
+
+  color: white;
 
   a:link {
     color: #73a8ff;
@@ -96,6 +107,15 @@ body {
   .error {
     color: white;
     background: #c71515;
+  }
+
+  .acc-card {
+    @include mat-elevation(3);
+
+    background: rgb(24, 29, 31);
+    border: gray solid 1px;
+
+    padding: 10px;
   }
 }
 
