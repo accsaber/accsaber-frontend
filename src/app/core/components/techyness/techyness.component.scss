@@ -1,11 +1,19 @@
 .techyness {
   width: 100px;
-  height: 15px;
+  height: 16px;
   border: thin solid black;
   border-radius: 4px;
   cursor: default;
 
   .bar {
     height: inherit;
+  }
+
+  .value {
+    position: absolute;
+    margin: 0;
+    width: inherit;
+    text-align: center;
+    line-height: 16px;
   }
 }

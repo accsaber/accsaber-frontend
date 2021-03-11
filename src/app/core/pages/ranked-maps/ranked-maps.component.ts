@@ -16,14 +16,15 @@ import { getBaseGridOptions } from '../../../shared/utlis/grid-utils';
 })
 export class RankedMapsComponent implements OnInit {
   rankedMapGripOptions: GridOptions = getBaseGridOptions([
+    { type: 'songCoverArt' },
     { type: 'song' },
     { field: 'levelAuthorName', headerName: 'Mapper' },
     { type: 'difficulty' },
-    { type: 'stretchColumn' },
     { type: 'techyness' },
     {
       headerName: '',
       type: 'button',
+      width: 150,
       headerComponentFramework: HeaderButtonComponent,
       headerClass: 'grid-center',
       cellClass: 'grid-center-cell',
@@ -63,11 +64,6 @@ export class RankedMapsComponent implements OnInit {
 
   ngOnInit(): void {
     this.rowData = this.rankedMapsService.getRankedMaps();
-  }
-
-  resizeGrid(): void {
-    this.rankedMapGripOptions.columnApi.autoSizeAllColumns();
-    this.rankedMapGripOptions.api.sizeColumnsToFit();
   }
 
   private openBeatSaver(key: string): void {

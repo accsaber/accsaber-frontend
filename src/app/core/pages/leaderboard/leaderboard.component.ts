@@ -13,6 +13,7 @@ import { getBaseGridOptions } from '../../../shared/utlis/grid-utils';
 export class LeaderboardComponent implements OnInit {
   leaderboardGridOptions: GridOptions = getBaseGridOptions([
     { type: 'rank' },
+    { type: 'avatar' },
     { type: 'playerName' },
     { type: 'ap' },
     {
@@ -29,7 +30,6 @@ export class LeaderboardComponent implements OnInit {
       sortingOrder: ['desc', 'asc', ''],
     },
     { field: 'hmd', headerName: 'HMD' },
-    { field: '', type: 'stretchColumn' },
   ]);
 
   rowData: Observable<Player[]>;
@@ -39,9 +39,4 @@ export class LeaderboardComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-
-  resizeGrid(): void {
-    this.leaderboardGridOptions.columnApi.autoSizeAllColumns();
-    this.leaderboardGridOptions.api.sizeColumnsToFit();
-  }
 }

@@ -37,13 +37,8 @@ body {
   }
 
   .contrast-rich-text {
-    color: black;
-    position: absolute;
-    top: 0;
-    margin: 0;
-    width: inherit;
-    text-align: center;
     text-shadow: 0 0 1px white, 0 0 3px white, 0 0 5px white;
+    color: black;
   }
 
   .info {
@@ -60,6 +55,15 @@ body {
     color: white;
     background: #c71515;
   }
+
+  .acc-card {
+    @include mat-elevation(3);
+
+    border: #babfc7 solid 1px;
+
+    padding: 10px;
+    //border-radius: 5px;
+  }
 }
 
 .dark-theme {
@@ -67,6 +71,8 @@ body {
   ag-grid-angular {
     @include ag-theme-alpine-dark();
   }
+
+  color: white;
 
   a:link {
     color: #73a8ff;
@@ -84,13 +90,8 @@ body {
   }
 
   .contrast-rich-text {
-    color: white;
-    position: absolute;
-    top: 0;
-    margin: 0;
-    width: inherit;
-    text-align: center;
     text-shadow: 0 0 1px black, 0 0 3px black, 0 0 5px black;
+    color: white;
   }
 
   .info {
@@ -107,6 +108,15 @@ body {
     color: white;
     background: #c71515;
   }
+
+  .acc-card {
+    @include mat-elevation(3);
+
+    background: rgb(24, 29, 31);
+    border: gray solid 1px;
+
+    padding: 10px;
+  }
 }
 
 .spacer {
@@ -114,7 +124,6 @@ body {
 }
 
 .accsaber-page {
-  @include mat-elevation(5);
   position: relative;
 
   margin: 20px;
@@ -123,9 +132,9 @@ body {
   border-radius: 7px;
 
   ag-grid-angular {
+    @include mat-elevation(5);
     height: 100%;
     width: 100%;
-    border-radius: 7px;
   }
 }
 

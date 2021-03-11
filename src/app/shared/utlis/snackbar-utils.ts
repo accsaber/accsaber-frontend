@@ -9,5 +9,5 @@ export function showWarn(snackbar: MatSnackBar, message: string): void {
 }
 
 export function showError(snackbar: MatSnackBar, message: string): void {
-  snackbar.open(message, null, { panelClass: 'error', duration: 494399 });
+  snackbar.open(message, null, { panelClass: 'error' });
 }

@@ -14,6 +14,8 @@ export class AppComponent {
   playerName: string;
   playerId: string;
 
+  imageUrl = environment.imageUrl;
+
   links = [
     { linkName: 'Leaderboard', linkPath: '/leaderboard' },
     { linkName: 'Ranked Maps', linkPath: '/ranked-maps' },
