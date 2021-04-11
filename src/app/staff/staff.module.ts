@@ -10,6 +10,10 @@ import { MatSliderModule } from '@angular/material/slider';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
+import { QualifiedListComponent } from './components/qualified-list/qualified-list.component';
+import { AgGridModule } from 'ag-grid-angular';
+import { VotesComponent } from './components/votes/votes.component';
+import { MatIconModule } from '@angular/material/icon';
 
 const routes: Routes = [
   { path: '', redirectTo: 'maps', pathMatch: 'full' },
@@ -18,7 +22,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [RankSongComponent],
+  declarations: [
+    RankSongComponent,
+    QualifiedListComponent,
+    VotesComponent
+  ],
   imports: [
     CommonModule,
     SharedModule,
@@ -31,6 +39,8 @@ const routes: Routes = [
     FormsModule,
     MatSelectModule,
     MatButtonModule,
-  ],
+    AgGridModule,
+    MatIconModule
+  ]
 })
 export class StaffModule {}
