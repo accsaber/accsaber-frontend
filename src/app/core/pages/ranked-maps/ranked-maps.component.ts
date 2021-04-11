@@ -4,10 +4,10 @@ import { Observable } from 'rxjs';
 import { RankedMap } from '../../../shared/model/ranked-map';
 import { RankedMapsService } from './ranked-maps.service';
 import { Router } from '@angular/router';
-import { createPlaylist } from '../../../shared/utlis/playlist-utils';
 import { HeaderButtonComponent } from '../../components/header-button/header-button.component';
 import { HttpClient } from '@angular/common/http';
 import { getBaseGridOptions } from '../../../shared/utlis/grid-utils';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-ranked-maps',
@@ -30,7 +30,7 @@ export class RankedMapsComponent implements OnInit {
       cellClass: 'grid-center-cell',
       headerComponentParams: {
         buttonInfo: {
-          clickCallback: (data) => this.createPlaylist(data),
+          clickCallback: (data) => this.getPlaylist(data),
           icon: 'get_app',
           color: 'primary',
           tooltip: 'Download Ranked Map Playlist',
@@ -74,7 +74,7 @@ export class RankedMapsComponent implements OnInit {
     window.open(`https://scoresaber.com/leaderboard/${leaderboardId}`, '_blank');
   }
 
-  private createPlaylist(api: GridApi): void {
-    createPlaylist(api, this.http);
+  private getPlaylist(api: GridApi): void {
+    window.open(`${environment.apiUrl}/ranked-maps/playlist`, '_blank');
   }
 }
