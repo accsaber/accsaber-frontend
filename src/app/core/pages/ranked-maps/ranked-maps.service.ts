@@ -12,6 +12,5 @@ export class RankedMapsService {
 
   getRankedMaps(): Observable<RankedMap[]> {
     return this.http.get<RankedMap[]>(`${environment.apiUrl}/ranked-maps`);
-
   }
 }
