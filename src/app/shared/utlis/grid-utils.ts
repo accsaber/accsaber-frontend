@@ -5,6 +5,7 @@ import { GridButtonComponent } from '../../core/components/grid-button/grid-butt
 import { capitalize, getPlayerId } from './global-utils';
 import * as moment from 'moment';
 import { GridImageComponent } from '../../core/components/grid-avatar/grid-image.component';
+import { VotesComponent } from '../../staff/components/votes/votes.component';
 
 export function accValueFormatter(params: ValueFormatterParams): string {
   return `${params.value.toFixed(2)}%`;

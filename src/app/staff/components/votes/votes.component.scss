@@ -1,0 +1,20 @@
+.votes {
+  display: flex;
+  flex-flow: row;
+
+  div {
+    display: flex;
+
+    mat-icon {
+      margin: auto;
+    }
+
+    &#upvotes {
+      color: green;
+    }
+
+    &#downvotes {
+      color: red;
+    }
+  }
+}
