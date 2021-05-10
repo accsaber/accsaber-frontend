@@ -24,9 +24,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
 import { ChartsModule } from 'ng2-charts';
 import { GridImageComponent } from './components/grid-avatar/grid-image.component';
+import { LoginComponent } from './pages/login/login.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'leaderboard', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
   { path: 'leaderboard', component: LeaderboardComponent },
   { path: 'ranked-maps', component: RankedMapsComponent },
   { path: 'map-leaderboards/:leaderboardId', component: MapLeaderboardComponent },
@@ -49,22 +51,23 @@ const routes: Routes = [
     TechynessComponent,
     ProfileComponent,
     GridImageComponent,
+    LoginComponent,
   ],
-    imports: [
-        CommonModule,
-        RouterModule.forChild(routes),
-        AgGridModule,
-        MatFormFieldModule,
-        MatButtonModule,
-        MatInputModule,
-        SharedModule,
-        FormsModule,
-        MatListModule,
-        MatIconModule,
-        MatTooltipModule,
-        MatSelectModule,
-        ChartsModule,
-        ReactiveFormsModule
-    ],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    AgGridModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule,
+    SharedModule,
+    FormsModule,
+    MatListModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatSelectModule,
+    ChartsModule,
+    ReactiveFormsModule,
+  ],
 })
 export class CoreModule {}

@@ -1,8 +1,8 @@
 import { Component, Renderer2 } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { SignUpComponent } from './core/components/sign-up/sign-up.component';
+import { MatDialog } from '@angular/material/dialog';
 import { environment } from '../environments/environment';
 import { getPlayerId, getPlayerName, getTheme, setTheme } from './shared/utlis/global-utils';
+import { AuthenticationService } from './shared/auth/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +24,11 @@ export class AppComponent {
   ];
   isBeta: boolean;
 
-  constructor(private dialog: MatDialog, private renderer: Renderer2) {
+  constructor(
+    private dialog: MatDialog,
+    private renderer: Renderer2,
+    private authenticationService: AuthenticationService
+  ) {
     this.isBeta = environment.isBeta;
 
     this.playerName = getPlayerName();
@@ -36,11 +40,12 @@ export class AppComponent {
   }
 
   showSignupDialog(): void {
-    const config: MatDialogConfig = {
-      hasBackdrop: true,
-      width: '500px',
-    };
-    this.dialog.open(SignUpComponent, config);
+    this.authenticationService.attemptLogin();
+    // const config: MatDialogConfig = {
+    //   hasBackdrop: true,
+    //   width: '500px',
+    // };
+    // this.dialog.open(SignUpComponent, config);
   }
 
   switchTheme(): void {
