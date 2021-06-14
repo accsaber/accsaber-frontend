@@ -16,6 +16,7 @@ import { VotesComponent } from './components/votes/votes.component';
 import { MatIconModule } from '@angular/material/icon';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { MapSuggestionComponent } from './components/map-suggestion/map-suggestion.component';
+import { RankedMapsInfoComponent } from './components/ranked-maps-info/ranked-maps-info.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'maps', pathMatch: 'full' },
@@ -29,7 +30,8 @@ const routes: Routes = [
     QualifiedListComponent,
     VotesComponent,
     DashboardComponent,
-    MapSuggestionComponent
+    MapSuggestionComponent,
+    RankedMapsInfoComponent
   ],
   imports: [
     CommonModule,
