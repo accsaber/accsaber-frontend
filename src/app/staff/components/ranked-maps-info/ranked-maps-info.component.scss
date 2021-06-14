@@ -1,0 +1,11 @@
+@import "~@angular/material/_theming.scss";
+
+.ranked-maps-info {
+  @include mat-elevation(5);
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+}
