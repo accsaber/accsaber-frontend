@@ -19,6 +19,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'maps', pathMatch: 'full' },
   // { path: 'dashboard', redirectTo: 'maps', pathMatch: 'full' },
   { path: 'maps', component: RankSongComponent },
+  { path: 'qualified', component: QualifiedListComponent }
 ];
 
 @NgModule({

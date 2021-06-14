@@ -2,19 +2,11 @@
   display: flex;
   flex-flow: row;
 
-  div {
-    display: flex;
+  #upvotes {
+    color: green;
+  }
 
-    mat-icon {
-      margin: auto;
-    }
-
-    &#upvotes {
-      color: green;
-    }
-
-    &#downvotes {
-      color: red;
-    }
+  #downvotes {
+    color: red;
   }
 }

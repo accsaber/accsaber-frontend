@@ -1,10 +1,20 @@
 <div class="votes">
-  <div id="upvotes">
+  <button
+    mat-icon-button
+    id="upvotes"
+    (click)="onUpvoteClicked()"
+    [disabled]="hasUpvoted()"
+  >
     <mat-icon>keyboard_arrow_up</mat-icon>
     <span>{{ params.data.upvotes }}</span>
-  </div>
-  <div id="downvotes">
+  </button>
+  <button
+    mat-icon-button
+    id="downvotes"
+    (click)="onDownvoteClicked()"
+    [disabled]="hasDownvoted()"
+  >
     <mat-icon>keyboard_arrow_down</mat-icon>
     <span>{{ params.data.downvotes }}</span>
-  </div>
+  </button>
 </div>

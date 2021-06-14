@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
-import { GridParams, ICellRendererParams } from 'ag-grid-community';
+import { ICellRendererParams } from 'ag-grid-community';
 
 @Component({
   selector: 'app-votes',
@@ -8,11 +8,11 @@ import { GridParams, ICellRendererParams } from 'ag-grid-community';
   styleUrls: ['./votes.component.scss']
 })
 export class VotesComponent implements ICellRendererAngularComp, OnInit {
-  params: GridParams;
+  params: GridButtonParams;
 
   constructor() {}
 
-  agInit(params: ICellRendererParams): void {
+  agInit(params: GridButtonParams): void {
     this.params = params;
   }
 
@@ -22,4 +22,29 @@ export class VotesComponent implements ICellRendererAngularComp, OnInit {
   refresh(params: any): boolean {
     return false;
   }
+
+  onUpvoteClicked(): void {
+    this.params.buttonInfos.upvote(this.params.data.key);
+  }
+
+  onDownvoteClicked(): void {
+    this.params.buttonInfos.downvote(this.params.data.key);
+  }
+
+  hasUpvoted(): boolean {
+    return this.params.data.userVote === 1;
+  }
+
+  hasDownvoted(): boolean {
+    return this.params.data.userVote === -1;
+  }
+}
+
+interface GridButtonParams extends ICellRendererParams {
+  buttonInfos: ButtonInfo;
+}
+
+interface ButtonInfo {
+  upvote: (key: string) => void;
+  downvote: (key: string) => void;
 }

@@ -17,7 +17,16 @@ export class QualifiedListComponent implements OnInit {
     { type: 'song' },
     { field: 'levelAuthorName', headerName: 'Mapper' },
     { type: 'difficulty' },
-    { headerName: 'Upvotes/Downvotes', cellRendererFramework: VotesComponent },
+    {
+      headerName: 'Upvotes/Downvotes',
+      cellRendererFramework: VotesComponent,
+      cellRendererParams: {
+        buttonInfos: {
+          upvote: (key) => this.upvote(key),
+          downvote: (key) => this.downvote(key)
+        }
+      }
+    },
 ]);
 
   rowData: Observable<QualifiedMap[]>;
@@ -28,6 +37,13 @@ export class QualifiedListComponent implements OnInit {
 
   ngOnInit(): void {
     this.rowData = this.qualifiedListService.getQualifiedMaps();
-    console.log(this.rowData);
+  }
+
+  private upvote(key: string): void {
+    this.qualifiedListService.upvoteMap(key);
+  }
+
+  private downvote(key: string): void {
+    this.qualifiedListService.downvoteMap(key);
   }
 }

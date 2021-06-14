@@ -13,4 +13,5 @@ export interface QualifiedMap {
 
   upvotes: number;
   downvotes: number;
+  userVote: number; // lists of players who voted (by id)
 }
