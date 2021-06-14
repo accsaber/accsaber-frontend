@@ -1,0 +1,12 @@
+@import "~@angular/material/_theming.scss";
+
+.qualified-list {
+  height: calc(100% - 40px);
+  width: calc(100% - 40px);
+
+  ag-grid-angular {
+    @include mat-elevation(5);
+    height: 100%;
+    width: 100%;
+  }
+}

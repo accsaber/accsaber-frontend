@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RankSongService } from '../../pages/rank-song/rank-song.service';
+import { RankSongService } from '../../services/rank-song.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { RankSongDto } from '../../../shared/model/rank-song-dto';
 import { showError, showInfo } from '../../../shared/utlis/snackbar-utils';

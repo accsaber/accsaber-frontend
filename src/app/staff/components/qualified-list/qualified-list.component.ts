@@ -36,6 +36,14 @@ export class QualifiedListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.loadQualifiedMaps();
+  }
+
+  refresh(): void {
+    this.loadQualifiedMaps();
+  }
+
+  private loadQualifiedMaps(): void {
     this.rowData = this.qualifiedListService.getQualifiedMaps();
   }
 
