@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Label, SingleDataSet } from 'ng2-charts';
 import { ChartOptions } from 'chart.js';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RankSongService } from './rank-song.service';
+import { RankSongService } from '../../services/rank-song.service';
 import { RankSongDto } from '../../../shared/model/rank-song-dto';
 import { showError, showInfo } from '../../../shared/utlis/snackbar-utils';
 import { MatSnackBar } from '@angular/material/snack-bar';

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { QualifiedListService } from './qualified-list.service';
+import { QualifiedListService } from '../../services/qualified-list.service';
 import { Observable } from 'rxjs';
 import { QualifiedMap } from '../../../shared/model/qualified-map';
 import { GridOptions } from 'ag-grid-community';

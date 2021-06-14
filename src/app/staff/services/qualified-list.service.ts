@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { QualifiedMap } from '../../../shared/model/qualified-map';
-import { environment } from '../../../../environments/environment';
+import { QualifiedMap } from '../../shared/model/qualified-map';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'

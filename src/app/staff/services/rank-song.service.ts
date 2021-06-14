@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { RankSongDto } from '../../../shared/model/rank-song-dto';
-import { environment } from '../../../../environments/environment';
-import { RankedStatistics } from '../../../shared/model/ranked-statistics';
+import { RankSongDto } from '../../shared/model/rank-song-dto';
+import { environment } from '../../../environments/environment';
+import { RankedStatistics } from '../../shared/model/ranked-statistics';
 
 @Injectable({
   providedIn: 'root',
