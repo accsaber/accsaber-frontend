@@ -1,0 +1,22 @@
+@import "~@angular/material/_theming.scss";
+
+.rank-form {
+  @include mat-elevation(5);
+  grid-area: rankform;
+  padding: 15px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  mat-slider {
+    width: 100%;
+  }
+  button {
+    width: 200px;
+    place-self: flex-end;
+  }
+}

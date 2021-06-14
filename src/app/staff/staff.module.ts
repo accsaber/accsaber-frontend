@@ -14,19 +14,22 @@ import { QualifiedListComponent } from './components/qualified-list/qualified-li
 import { AgGridModule } from 'ag-grid-angular';
 import { VotesComponent } from './components/votes/votes.component';
 import { MatIconModule } from '@angular/material/icon';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { MapSuggestionComponent } from './components/map-suggestion/map-suggestion.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'maps', pathMatch: 'full' },
-  // { path: 'dashboard', redirectTo: 'maps', pathMatch: 'full' },
-  { path: 'maps', component: RankSongComponent },
-  { path: 'qualified', component: QualifiedListComponent }
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'maps', component: RankSongComponent }
 ];
 
 @NgModule({
   declarations: [
     RankSongComponent,
     QualifiedListComponent,
-    VotesComponent
+    VotesComponent,
+    DashboardComponent,
+    MapSuggestionComponent
   ],
   imports: [
     CommonModule,
