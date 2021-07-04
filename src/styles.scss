@@ -10,6 +10,7 @@ html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -17,6 +18,7 @@ body {
 
 .light-theme {
   @include angular-material-theme($light-theme);
+
   ag-grid-angular {
     @include ag-theme-alpine($ag-theme-alpine-default-params);
   }
@@ -68,6 +70,7 @@ body {
 
 .dark-theme {
   @include angular-material-theme($dark-theme);
+
   ag-grid-angular {
     @include ag-theme-alpine-dark();
   }
@@ -136,6 +139,14 @@ body {
     height: 100%;
     width: 100%;
   }
+
+  mat-tab-group {
+    height: 100%;
+  }
+
+  .mat-tab-body-wrapper {
+    height: 100%;
+  }
 }
 
 .grid-center {
@@ -150,6 +161,7 @@ body {
     }
   }
 }
+
 // FIXME these styles don't work anymore
 .info {
   background: #66ea66;

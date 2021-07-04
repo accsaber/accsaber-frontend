@@ -1,7 +1,16 @@
 <div class="accsaber-page">
-  <ag-grid-angular
-    [gridOptions]="leaderboardGridOptions"
-    [rowData]="rowData | async"
-    style="height: 100%; width: 100%"
-  ></ag-grid-angular>
+  <mat-tab-group (selectedIndexChange)="onTabClick($event)" animationDuration="500">
+    <mat-tab *ngIf="(tabs| async) === null" label="Total">
+      Loading...
+    </mat-tab>
+    <mat-tab *ngFor="let tab of tabs | async">
+      <ng-template mat-tab-label>{{tab.label}}</ng-template>
+      <div style="height: 100%" *ngIf="tab?.active">
+        <ag-grid-angular
+          [gridOptions]="leaderboardGridOptions"
+          [rowData]="rowData | async"
+        ></ag-grid-angular>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
 </div>
