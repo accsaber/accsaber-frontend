@@ -49,8 +49,8 @@ export class LeaderboardComponent implements OnInit {
           categories
             .map((category) => {
               return {
-                label: getTitleCase(category.name),
-                categoryName: category.name,
+                label: getTitleCase(category.categoryName),
+                categoryName: category.categoryName,
                 active: false,
               };
             })
