@@ -10,7 +10,7 @@
   gap: 15px 15px;
   grid-template-areas:
     "rankform rankedmapinfo"
-    "techyness techyness";
+    "complexity complexity";
 }
 
 .rank-form {
@@ -45,9 +45,9 @@
   min-width: 0;
 }
 
-.techyness {
+.complexity {
   @include mat-elevation(5);
-  grid-area: techyness;
+  grid-area: complexity;
   border-radius: 5px;
   padding: 10px;
 

@@ -20,7 +20,8 @@ export class RankedMapsComponent implements OnInit {
     { type: 'song' },
     { field: 'levelAuthorName', headerName: 'Mapper' },
     { type: 'difficulty' },
-    { type: 'techyness' },
+    { type: 'complexity' },
+    { type: 'category' },
     {
       headerName: '',
       type: 'button',

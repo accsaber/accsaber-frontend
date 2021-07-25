@@ -30,11 +30,11 @@
     </form>
 
     <mat-form-field>
-      <mat-label>Techyness</mat-label>
+      <mat-label>Complexity</mat-label>
       <input
         matInput
-        (change)="this.recalculateTechynessValues()"
-        [(ngModel)]="techyness"
+        (change)="this.recalculateComplexityValues()"
+        [(ngModel)]="complexity"
         type="number"
       />
     </mat-form-field>
@@ -43,8 +43,8 @@
       thumbLabel
       min="0"
       max="15"
-      (change)="this.recalculateTechynessValues()"
-      [(ngModel)]="techyness"
+      (change)="this.recalculateComplexityValues()"
+      [(ngModel)]="complexity"
     ></mat-slider>
     <div class="spacer"></div>
     <button mat-raised-button [disabled]="!rankForm.valid" (click)="rankSong()">Rank</button>
@@ -56,18 +56,18 @@
         baseChart
         chartType="bar"
         [data]="rankedCount"
-        [labels]="rankedTechyness"
+        [labels]="rankedComplexity"
         [options]="rankedStatsOptions"
       ></canvas>
 
   </div>
-  <div class="techyness">
+  <div class="complexity">
     <canvas
       baseChart
       chartType="line"
-      [data]="techynessSet"
-      [labels]="techynessLabels"
-      [options]="techynessOptions"
+      [data]="complexitySet"
+      [labels]="complexityLabels"
+      [options]="complexityOptions"
     ></canvas>
   </div>
 </div>

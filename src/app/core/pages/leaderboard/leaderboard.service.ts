@@ -11,8 +11,13 @@ import { Category } from '../../../shared/model/category';
 export class LeaderboardService {
   constructor(private http: HttpClient) {}
 
+  // TODO Switch to overall leaderboard if rest endpoints are finalized
   getLeaderBoard(): Observable<Player[]> {
     return this.http.get<Player[]>(`${environment.apiUrl}/players`);
+  }
+
+  getSpecificLeaderBoard(name: string): Observable<Player[]> {
+    return this.http.get<Player[]>(`${environment.apiUrl}/categories/${name}/standings`);
   }
 
   getLeaderboards(): Observable<Category[]>{

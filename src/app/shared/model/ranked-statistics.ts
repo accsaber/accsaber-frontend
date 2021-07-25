@@ -4,5 +4,5 @@ export interface RankedStatistics {
   standardAccMapCount: number;
   techAccMapCount: number;
 
-  techynessToMapCount: { [n: number]: number };
+  complexityToMapCount: { [n: number]: number };
 }

@@ -7,7 +7,7 @@ export interface PlayerScore {
   songName: string;
   songAuthorName: string;
   levelAuthorName: string;
-  techyness: number;
+  complexity: number;
   songHash: string;
 
   difficulty: string;

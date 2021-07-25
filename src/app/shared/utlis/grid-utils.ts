@@ -1,6 +1,6 @@
-import { ColDef, GridOptions, NumberFilter, ValueFormatterParams } from 'ag-grid-community';
+import { ColDef, GridOptions, NumberFilter, TextFilter, ValueFormatterParams } from 'ag-grid-community';
 import { GridLinkComponent } from '../../core/components/grid-link/grid-link.component';
-import { TechynessComponent } from '../../core/components/techyness/techyness.component';
+import { ComplexityComponent } from '../../core/components/complexity/complexity.component';
 import { GridButtonComponent } from '../../core/components/grid-button/grid-button.component';
 import { capitalize, getPlayerId } from './global-utils';
 import * as moment from 'moment';
@@ -75,13 +75,18 @@ export function getColTypes(): { [key: string]: ColDef } {
       minWidth: 150,
       flex: 0.2,
     },
-    techyness: {
-      field: 'techyness',
-      headerName: 'Techyness',
+    complexity: {
+      field: 'complexity',
+      headerName: 'Complexity',
       filter: NumberFilter,
-      cellRendererFramework: TechynessComponent,
-      flex: 0.5,
-      minWidth: 150,
+      cellRendererFramework: ComplexityComponent,
+      flex: 0.3,
+      minWidth: 75,
+    },
+    category: {
+      field: 'categoryName',
+      headerName: 'Category',
+      filter: TextFilter,
     },
     song: {
       headerName: 'Song',

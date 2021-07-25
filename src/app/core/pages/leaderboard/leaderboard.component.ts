@@ -45,10 +45,14 @@ export class LeaderboardComponent implements OnInit {
       .getLeaderboards()
       .pipe(
         map((categories) => {
-          const tabs: Tab[] = [{ label: 'Total', active: true }];
+          const tabs: Tab[] = [{ label: 'Overall', categoryName: 'overall', active: true }];
           categories
             .map((category) => {
-              return { label: getTitleCase(category.name), active: false };
+              return {
+                label: getTitleCase(category.name),
+                categoryName: category.name,
+                active: false,
+              };
             })
             .forEach((tab) => tabs.push(tab));
           return tabs;
@@ -58,19 +62,24 @@ export class LeaderboardComponent implements OnInit {
   }
 
   onTabClick(index: number): void {
-    if (!this.tabs.value[index].rowData) {
-      this.leaderboardService.getLeaderBoard().subscribe((value) => {
-        this.tabs.value[index].rowData = value;
-        this.rowData = this.tabs.value[index].rowData;
+    const tab = this.tabs.value[index];
+    if (!tab.rowData) {
+      this.leaderboardGridOptions.api.showLoadingOverlay();
+      this.leaderboardService.getSpecificLeaderBoard(tab.categoryName).subscribe((value) => {
+        tab.rowData = value;
+        this.rowData = tab.rowData;
+
+        this.leaderboardGridOptions.api.hideOverlay();
       });
     } else {
-      this.rowData = this.tabs.value[index].rowData;
+      this.rowData = tab.rowData;
     }
   }
 }
 
 export interface Tab {
   label: string;
+  categoryName: string;
   active: boolean;
   rowData?: Player[];
 }

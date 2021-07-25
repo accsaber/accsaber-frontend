@@ -17,7 +17,7 @@ import { MapLeaderboardComponent } from './pages/map-leaderboard/map-leaderboard
 import { GridButtonComponent } from './components/grid-button/grid-button.component';
 import { GridLinkComponent } from './components/grid-link/grid-link.component';
 import { MatIconModule } from '@angular/material/icon';
-import { TechynessComponent } from './components/techyness/techyness.component';
+import { ComplexityComponent } from './components/complexity/complexity.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { HeaderButtonComponent } from './components/header-button/header-button.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -47,7 +47,7 @@ const routes: Routes = [
     GridButtonComponent,
     HeaderButtonComponent,
     GridLinkComponent,
-    TechynessComponent,
+    ComplexityComponent,
     ProfileComponent,
     GridImageComponent,
   ],

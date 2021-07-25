@@ -64,7 +64,7 @@ export class ProfileComponent implements OnInit {
     { type: 'ap' },
     { type: 'timeSet' },
     { type: 'difficulty' },
-    { type: 'techyness' },
+    { type: 'complexity' },
   ]);
   imageUrl = environment.imageUrl;
 
@@ -88,7 +88,7 @@ export class ProfileComponent implements OnInit {
   }
 
   calcSkill(scores: PlayerScore[], minTech: number, maxTech: number = 100): number {
-    const playerScores = scores.filter((s) => minTech <= s.techyness && s.techyness <= maxTech);
+    const playerScores = scores.filter((s) => minTech <= s.complexity && s.complexity <= maxTech);
     return Math.max(
       Math.round(
         (playerScores.reduce((sum, current) => sum + current.ap, 0) / playerScores.length - 190) /
