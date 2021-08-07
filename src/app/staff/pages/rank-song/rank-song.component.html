@@ -10,10 +10,10 @@
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label>Beatsaver Key</mat-label>
-        <input matInput formControlName="beatSaverKey" />
-        <mat-error *ngIf="rankForm.controls['beatSaverKey'].invalid"
-          >Please enter a BeatSaver Key</mat-error
+        <mat-label>Map hash</mat-label>
+        <input matInput formControlName="songHash" />
+        <mat-error *ngIf="rankForm.controls['songHash'].invalid"
+          >Please enter a Song hash Key</mat-error
         >
       </mat-form-field>
 
@@ -25,6 +25,15 @@
           <mat-option value="hard">Hard</mat-option>
           <mat-option value="expert">Expert</mat-option>
           <mat-option value="expertPlus">Expert+</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Category</mat-label>
+        <mat-select formControlName="categoryName">
+          <mat-option *ngFor="let category of this.categories" [value]="category.categoryName">{{
+            category.categoryName
+          }} acc</mat-option>
         </mat-select>
       </mat-form-field>
     </form>
@@ -51,15 +60,13 @@
   </div>
 
   <div class="ranked-maps-info">
-
-      <canvas
-        baseChart
-        chartType="bar"
-        [data]="rankedCount"
-        [labels]="rankedComplexity"
-        [options]="rankedStatsOptions"
-      ></canvas>
-
+    <canvas
+      baseChart
+      chartType="bar"
+      [data]="rankedCount"
+      [labels]="rankedComplexity"
+      [options]="rankedStatsOptions"
+    ></canvas>
   </div>
   <div class="complexity">
     <canvas

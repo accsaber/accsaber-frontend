@@ -1,6 +1,7 @@
 export interface RankSongDto {
   leaderboardId: number;
-  beatSaverKey: string;
+  songHash: string;
   difficulty: string;
   complexity: number;
+  categoryName: string;
 }

@@ -7,6 +7,7 @@ import { RankSongDto } from '../../../shared/model/rank-song-dto';
 import { showError, showInfo } from '../../../shared/utlis/snackbar-utils';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { RankedStatistics } from '../../../shared/model/ranked-statistics';
+import { Category } from '../../../shared/model/category';
 
 function getValues(): number[] {
   const start = 96;
@@ -29,11 +30,13 @@ function getValues(): number[] {
 export class RankSongComponent implements OnInit {
   rankForm: FormGroup = this.fb.group({
     leaderboardId: ['', [Validators.required]],
-    beatSaverKey: ['', [Validators.required]],
+    songHash: ['', [Validators.required]],
     difficulty: ['normal'],
+    categoryName: [''],
   });
   complexity = 7;
 
+  categories: Category[];
   complexitySet: SingleDataSet = [];
   complexityLabels: Label[] = [];
   complexityOptions: ChartOptions = {
@@ -81,6 +84,7 @@ export class RankSongComponent implements OnInit {
     this.complexityLabels = getValues().map((v) => `${v.toFixed(2)}%`);
     this.recalculateComplexityValues();
     this.loadStatistics();
+    this.loadCategories();
   }
 
   calculateApByAcc(accuracy: number): number {
@@ -122,5 +126,11 @@ export class RankSongComponent implements OnInit {
         (t) => rankedStats.complexityToMapCount[t.toString()]
       );
     });
+  }
+
+  private loadCategories(): void {
+    this.rankSongService
+      .getAllLeaderboards()
+      .subscribe((categories) => (this.categories = categories));
   }
 }
