@@ -40,7 +40,6 @@ export class LeaderboardComponent implements OnInit {
   constructor(private leaderboardService: LeaderboardService) {}
 
   ngOnInit(): void {
-    this.leaderboardService.getLeaderBoard().subscribe((value) => (this.rowData = value));
     this.leaderboardService
       .getLeaderboards()
       .pipe(
@@ -58,10 +57,13 @@ export class LeaderboardComponent implements OnInit {
           return tabs;
         })
       )
-      .subscribe((tabs) => this.tabs.next(tabs));
+      .subscribe((tabs) => {
+        this.tabs.next(tabs);
+        this.selectCategory(0);
+      });
   }
 
-  onTabClick(index: number): void {
+  selectCategory(index: number): void {
     const tab = this.tabs.value[index];
     if (!tab.rowData) {
       this.leaderboardGridOptions.api.showLoadingOverlay();

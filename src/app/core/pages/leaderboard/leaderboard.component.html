@@ -1,5 +1,5 @@
 <div class="accsaber-page">
-  <mat-tab-group (selectedIndexChange)="onTabClick($event)" animationDuration="0">
+  <mat-tab-group (selectedIndexChange)="selectCategory($event)" animationDuration="0">
     <mat-tab *ngIf="(tabs | async) === null" label="Loading leaderboards..."></mat-tab>
     <mat-tab *ngFor="let tab of tabs | async">
       <ng-template mat-tab-label>{{ tab.label }}</ng-template>
