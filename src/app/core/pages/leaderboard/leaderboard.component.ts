@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { GridOptions, NumberFilter } from 'ag-grid-community';
 import { LeaderboardService } from './leaderboard.service';
-import { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { Player } from '../../../shared/model/player';
 import { getBaseGridOptions } from '../../../shared/utlis/grid-utils';
+import { map } from 'rxjs/operators';
+import { getTitleCase } from '../../../shared/utlis/global-utils';
 
 @Component({
   selector: 'app-leaderboard',
@@ -32,11 +34,54 @@ export class LeaderboardComponent implements OnInit {
     { field: 'hmd', headerName: 'HMD' },
   ]);
 
-  rowData: Observable<Player[]>;
+  rowData: Player[];
+  tabs: BehaviorSubject<Tab[]> = new BehaviorSubject<Tab[]>(null);
 
-  constructor(private ls: LeaderboardService) {
-    this.rowData = ls.getLeaderBoard();
+  constructor(private leaderboardService: LeaderboardService) {}
+
+  ngOnInit(): void {
+    this.leaderboardService
+      .getLeaderboards()
+      .pipe(
+        map((categories) => {
+          const tabs: Tab[] = [{ label: 'Overall', categoryName: 'overall', active: true }];
+          categories
+            .map((category) => {
+              return {
+                label: getTitleCase(category.categoryName),
+                categoryName: category.categoryName,
+                active: false,
+              };
+            })
+            .forEach((tab) => tabs.push(tab));
+          return tabs;
+        })
+      )
+      .subscribe((tabs) => {
+        this.tabs.next(tabs);
+        this.selectCategory(0);
+      });
   }
 
-  ngOnInit(): void {}
+  selectCategory(index: number): void {
+    const tab = this.tabs.value[index];
+    if (!tab.rowData) {
+      this.leaderboardGridOptions.api.showLoadingOverlay();
+      this.leaderboardService.getSpecificLeaderBoard(tab.categoryName).subscribe((value) => {
+        tab.rowData = value;
+        this.rowData = tab.rowData;
+
+        this.leaderboardGridOptions.api.hideOverlay();
+      });
+    } else {
+      this.rowData = tab.rowData;
+    }
+  }
+}
+
+export interface Tab {
+  label: string;
+  categoryName: string;
+  active: boolean;
+  rowData?: Player[];
 }

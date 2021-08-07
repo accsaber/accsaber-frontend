@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { RankSongDto } from '../../../shared/model/rank-song-dto';
 import { environment } from '../../../../environments/environment';
 import { RankedStatistics } from '../../../shared/model/ranked-statistics';
+import { Category } from '../../../shared/model/category';
 
 @Injectable({
   providedIn: 'root',
@@ -17,5 +18,9 @@ export class RankSongService {
 
   getRankedStatistic(): Observable<RankedStatistics> {
     return this.http.get<RankedStatistics>(`${environment.apiUrl}/ranked-maps/statistics`);
+  }
+
+  getAllLeaderboards(): Observable<Category[]>{
+    return this.http.get<Category[]>(`${environment.apiUrl}/categories`);
   }
 }

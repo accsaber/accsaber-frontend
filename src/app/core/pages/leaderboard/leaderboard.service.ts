@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Player } from '../../../shared/model/player';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
+import { Category } from '../../../shared/model/category';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,11 @@ import { environment } from '../../../../environments/environment';
 export class LeaderboardService {
   constructor(private http: HttpClient) {}
 
-  getLeaderBoard(): Observable<Player[]> {
-    return this.http.get<Player[]>(`${environment.apiUrl}/players`);
+  getSpecificLeaderBoard(name: string): Observable<Player[]> {
+    return this.http.get<Player[]>(`${environment.apiUrl}/categories/${name}/standings`);
+  }
+
+  getLeaderboards(): Observable<Category[]> {
+    return this.http.get<Category[]>(`${environment.apiUrl}/categories`);
   }
 }

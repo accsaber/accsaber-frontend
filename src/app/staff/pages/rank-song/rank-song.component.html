@@ -10,10 +10,10 @@
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label>Beatsaver Key</mat-label>
-        <input matInput formControlName="beatSaverKey" />
-        <mat-error *ngIf="rankForm.controls['beatSaverKey'].invalid"
-          >Please enter a BeatSaver Key</mat-error
+        <mat-label>Map hash</mat-label>
+        <input matInput formControlName="songHash" />
+        <mat-error *ngIf="rankForm.controls['songHash'].invalid"
+          >Please enter a Song hash Key</mat-error
         >
       </mat-form-field>
 
@@ -27,14 +27,23 @@
           <mat-option value="expertPlus">Expert+</mat-option>
         </mat-select>
       </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Category</mat-label>
+        <mat-select formControlName="categoryName">
+          <mat-option *ngFor="let category of this.categories" [value]="category.categoryName">{{
+            category.categoryName
+          }} acc</mat-option>
+        </mat-select>
+      </mat-form-field>
     </form>
 
     <mat-form-field>
-      <mat-label>Techyness</mat-label>
+      <mat-label>Complexity</mat-label>
       <input
         matInput
-        (change)="this.recalculateTechynessValues()"
-        [(ngModel)]="techyness"
+        (change)="this.recalculateComplexityValues()"
+        [(ngModel)]="complexity"
         type="number"
       />
     </mat-form-field>
@@ -43,31 +52,29 @@
       thumbLabel
       min="0"
       max="15"
-      (change)="this.recalculateTechynessValues()"
-      [(ngModel)]="techyness"
+      (change)="this.recalculateComplexityValues()"
+      [(ngModel)]="complexity"
     ></mat-slider>
     <div class="spacer"></div>
     <button mat-raised-button [disabled]="!rankForm.valid" (click)="rankSong()">Rank</button>
   </div>
 
   <div class="ranked-maps-info">
-
-      <canvas
-        baseChart
-        chartType="bar"
-        [data]="rankedCount"
-        [labels]="rankedTechyness"
-        [options]="rankedStatsOptions"
-      ></canvas>
-
+    <canvas
+      baseChart
+      chartType="bar"
+      [data]="rankedCount"
+      [labels]="rankedComplexity"
+      [options]="rankedStatsOptions"
+    ></canvas>
   </div>
-  <div class="techyness">
+  <div class="complexity">
     <canvas
       baseChart
       chartType="line"
-      [data]="techynessSet"
-      [labels]="techynessLabels"
-      [options]="techynessOptions"
+      [data]="complexitySet"
+      [labels]="complexityLabels"
+      [options]="complexityOptions"
     ></canvas>
   </div>
 </div>

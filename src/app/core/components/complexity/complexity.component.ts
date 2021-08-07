@@ -3,11 +3,11 @@ import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { ICellRendererParams } from 'ag-grid-community';
 
 @Component({
-  selector: 'app-techyness',
-  templateUrl: './techyness.component.html',
-  styleUrls: ['./techyness.component.scss'],
+  selector: 'app-complexity',
+  templateUrl: './complexity.component.html',
+  styleUrls: ['./complexity.component.scss'],
 })
-export class TechynessComponent implements ICellRendererAngularComp, OnInit {
+export class ComplexityComponent implements ICellRendererAngularComp, OnInit {
   @Input() value: number;
   normVal: number;
   rgbValue: string;

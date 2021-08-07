@@ -7,6 +7,7 @@ import { RankSongDto } from '../../../shared/model/rank-song-dto';
 import { showError, showInfo } from '../../../shared/utlis/snackbar-utils';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { RankedStatistics } from '../../../shared/model/ranked-statistics';
+import { Category } from '../../../shared/model/category';
 
 function getValues(): number[] {
   const start = 96;
@@ -29,14 +30,16 @@ function getValues(): number[] {
 export class RankSongComponent implements OnInit {
   rankForm: FormGroup = this.fb.group({
     leaderboardId: ['', [Validators.required]],
-    beatSaverKey: ['', [Validators.required]],
+    songHash: ['', [Validators.required]],
     difficulty: ['normal'],
+    categoryName: [''],
   });
-  techyness = 7;
+  complexity = 7;
 
-  techynessSet: SingleDataSet = [];
-  techynessLabels: Label[] = [];
-  techynessOptions: ChartOptions = {
+  categories: Category[];
+  complexitySet: SingleDataSet = [];
+  complexityLabels: Label[] = [];
+  complexityOptions: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
     legend: { display: false },
@@ -54,7 +57,7 @@ export class RankSongComponent implements OnInit {
 
   rankedStatistics: RankedStatistics;
   rankedCount: SingleDataSet = [];
-  rankedTechyness = [];
+  rankedComplexity = [];
   rankedStatsOptions: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
@@ -67,7 +70,7 @@ export class RankSongComponent implements OnInit {
           scaleLabel: { labelString: 'Number of maps', display: true },
         },
       ],
-      xAxes: [{ scaleLabel: { labelString: 'techyness', display: true } }],
+      xAxes: [{ scaleLabel: { labelString: 'complexity', display: true } }],
     },
   };
 
@@ -78,22 +81,23 @@ export class RankSongComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.techynessLabels = getValues().map((v) => `${v.toFixed(2)}%`);
-    this.recalculateTechynessValues();
+    this.complexityLabels = getValues().map((v) => `${v.toFixed(2)}%`);
+    this.recalculateComplexityValues();
     this.loadStatistics();
+    this.loadCategories();
   }
 
   calculateApByAcc(accuracy: number): number {
-    return (Math.pow(1.0000004, Math.pow(accuracy, 3.5)) - 1) * (5 + this.techyness / 10);
+    return (Math.pow(1.0000004, Math.pow(accuracy, 3.5)) - 1) * (5 + this.complexity / 10);
   }
 
-  recalculateTechynessValues(): void {
-    this.techynessSet = getValues().map((v) => this.calculateApByAcc(v));
+  recalculateComplexityValues(): void {
+    this.complexitySet = getValues().map((v) => this.calculateApByAcc(v));
   }
 
   rankSong(): void {
     const rankSongInfo: RankSongDto = this.rankForm.getRawValue();
-    rankSongInfo.techyness = this.techyness;
+    rankSongInfo.complexity = this.complexity;
     console.log(rankSongInfo);
     this.rankSongService.rankSong(rankSongInfo).subscribe(
       () => {
@@ -114,13 +118,19 @@ export class RankSongComponent implements OnInit {
     this.rankSongService.getRankedStatistic().subscribe((rankedStats) => {
       this.rankedStatistics = rankedStats;
 
-      this.rankedTechyness = Object.keys(this.rankedStatistics.techynessToMapCount).sort((r, v) =>
+      this.rankedComplexity = Object.keys(this.rankedStatistics.complexityToMapCount).sort((r, v) =>
         Number(r) > Number(v) ? 1 : -1
       );
 
-      this.rankedCount = this.rankedTechyness.map(
-        (t) => rankedStats.techynessToMapCount[t.toString()]
+      this.rankedCount = this.rankedComplexity.map(
+        (t) => rankedStats.complexityToMapCount[t.toString()]
       );
     });
+  }
+
+  private loadCategories(): void {
+    this.rankSongService
+      .getAllLeaderboards()
+      .subscribe((categories) => (this.categories = categories));
   }
 }

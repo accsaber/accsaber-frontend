@@ -9,6 +9,11 @@ export function capitalize(word: string): string {
   return word[0].toUpperCase() + word.substr(1).toLowerCase();
 }
 
+export function getTitleCase(str): string {
+  return capitalize(str).replace('-', ' ');
+}
+
+
 export function savePlayerToStorage(playerName: string, playerId: string): void {
   localStorage.setItem('playerName', playerName);
   localStorage.setItem('playerId', playerId);
