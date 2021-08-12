@@ -102,7 +102,7 @@ export function getColTypes(): { [key: string]: ColDef } {
       valueFormatter: (params) => params.value,
       filter: TextFilter,
       flex: 0.1,
-      minWidth: 125,
+      minWidth: 175,
     },
     song: {
       headerName: 'Song',
