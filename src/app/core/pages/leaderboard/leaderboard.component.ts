@@ -5,7 +5,6 @@ import { BehaviorSubject } from 'rxjs';
 import { Player } from '../../../shared/model/player';
 import { getBaseGridOptions } from '../../../shared/utlis/grid-utils';
 import { map } from 'rxjs/operators';
-import { getTitleCase } from '../../../shared/utlis/global-utils';
 
 @Component({
   selector: 'app-leaderboard',
@@ -44,13 +43,14 @@ export class LeaderboardComponent implements OnInit {
       .getLeaderboards()
       .pipe(
         map((categories) => {
-          const tabs: Tab[] = [{ label: 'Overall', categoryName: 'overall', active: true }];
+          const tabs: Tab[] = [{ label: 'Overall', categoryName: 'overall', active: true, countsTowardsOverall: true }];
           categories
             .map((category) => {
               return {
-                label: getTitleCase(category.categoryName),
+                label: category.categoryDisplayName,
                 categoryName: category.categoryName,
                 active: false,
+                countsTowardsOverall: category.countsTowardsOverall
               };
             })
             .forEach((tab) => tabs.push(tab));
@@ -84,4 +84,5 @@ export interface Tab {
   categoryName: string;
   active: boolean;
   rowData?: Player[];
+  countsTowardsOverall: boolean;
 }

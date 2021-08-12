@@ -3,5 +3,10 @@
   flex-direction: column;
   mat-tab-group {
     margin-bottom: 15px;
+
+    .label-image {
+      max-height: 15px;
+      margin-right: 5px;
+    }
   }
 }

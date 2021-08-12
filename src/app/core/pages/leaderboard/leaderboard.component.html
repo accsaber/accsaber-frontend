@@ -2,7 +2,16 @@
   <mat-tab-group (selectedIndexChange)="selectCategory($event)" animationDuration="0">
     <mat-tab *ngIf="(tabs | async) === null" label="Loading leaderboards..."></mat-tab>
     <mat-tab *ngFor="let tab of tabs | async">
-      <ng-template mat-tab-label>{{ tab.label }}</ng-template>
+      <ng-template mat-tab-label>
+        <img
+          *ngIf="tab.countsTowardsOverall"
+          src="favicon.ico"
+          class="label-image"
+          alt="counting"
+          matTooltip="Counts towards the overall leaderboards"
+        />
+        {{ tab.label }}
+      </ng-template>
     </mat-tab>
   </mat-tab-group>
 

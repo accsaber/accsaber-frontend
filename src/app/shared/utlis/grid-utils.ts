@@ -60,6 +60,19 @@ export function getColTypes(): { [key: string]: ColDef } {
       minWidth: 100,
       flex: 0.3,
     },
+    weightedAp: {
+      field: 'ap',
+      headerName: 'AP',
+      filter: NumberFilter,
+      valueFormatter: (params) =>
+        `${params.value.toFixed(2)} (${params.data.weightedAp.toFixed(2)})`,
+      sortingOrder: ['desc', 'asc', ''],
+      cellStyle: () => {
+        return { color: getApColor() };
+      },
+      minWidth: 150,
+      flex: 0.3,
+    },
     rank: {
       field: 'rank',
       filter: NumberFilter,
@@ -81,19 +94,22 @@ export function getColTypes(): { [key: string]: ColDef } {
       filter: NumberFilter,
       cellRendererFramework: ComplexityComponent,
       flex: 0.3,
-      minWidth: 75,
+      minWidth: 150,
     },
     category: {
-      field: 'categoryName',
+      field: 'categoryDisplayName',
       headerName: 'Category',
+      valueFormatter: (params) => params.value,
       filter: TextFilter,
+      flex: 0.1,
+      minWidth: 125,
     },
     song: {
       headerName: 'Song',
       valueGetter: (params) => songNameValueGetter(params.data),
       cellRendererFramework: GridLinkComponent,
       cellRendererParams: { link: '/map-leaderboards', accessor: 'leaderboardId' },
-      flex: 1,
+      flex: 0.8,
       minWidth: 300,
     },
     playerName: {
@@ -121,8 +137,8 @@ export function getColTypes(): { [key: string]: ColDef } {
       field: 'timeSet',
       valueGetter: (params) => moment(params.data.timeSet),
       valueFormatter: (params) => params.value.fromNow(),
-      minWidth: 200,
-      flex: 0.4,
+      minWidth: 150,
+      flex: 0.3,
     },
     avatar: {
       cellRendererFramework: GridImageComponent,

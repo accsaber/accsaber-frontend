@@ -130,7 +130,7 @@ export class RankSongComponent implements OnInit {
 
   private loadCategories(): void {
     this.rankSongService
-      .getAllLeaderboards()
+      .getAllCategories()
       .subscribe((categories) => (this.categories = categories));
   }
 }

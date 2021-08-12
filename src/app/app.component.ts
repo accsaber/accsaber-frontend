@@ -3,6 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { SignUpComponent } from './core/components/sign-up/sign-up.component';
 import { environment } from '../environments/environment';
 import { getPlayerId, getPlayerName, getTheme, setTheme } from './shared/utlis/global-utils';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +25,7 @@ export class AppComponent {
   ];
   isBeta: boolean;
 
-  constructor(private dialog: MatDialog, private renderer: Renderer2) {
+  constructor(private dialog: MatDialog, private renderer: Renderer2, private http: HttpClient) {
     this.isBeta = environment.isBeta;
 
     this.playerName = getPlayerName();

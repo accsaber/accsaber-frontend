@@ -18,8 +18,8 @@ import { environment } from '../../../../environments/environment';
 })
 export class ProfileComponent implements OnInit {
   rowData: Observable<PlayerScore[]>;
-  skillLabels: Label[] = ['Tech', 'StandardTech', 'Standard', 'StandardTrue', 'True'];
-  playerSkill: ChartDataSets[] = [{ data: [0, 0, 0, 0, 0] }];
+  skillLabels: Label[] = [];
+  playerSkill: ChartDataSets[] = [];
   options: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
@@ -60,8 +60,9 @@ export class ProfileComponent implements OnInit {
     { type: 'rank' },
     { type: 'songCoverArt' },
     { type: 'song' },
+    { type: 'category' },
     { type: 'accuracy' },
-    { type: 'ap' },
+    { type: 'weightedAp' },
     { type: 'timeSet' },
     { type: 'difficulty' },
     { type: 'complexity' },
@@ -75,27 +76,25 @@ export class ProfileComponent implements OnInit {
       const playerId = params.playerId;
       this.rowData = this.profileService.getPlayerRankedScores(playerId);
       this.rowData.subscribe((scores) => {
-        const tech = this.calcSkill(scores, 10);
-        const techStandard = this.calcSkill(scores, 9, 12);
-        const standard = this.calcSkill(scores, 5, 10);
-        const standardTrue = this.calcSkill(scores, 3, 6);
-        const trueAcc = this.calcSkill(scores, -100, 4);
-
-        this.playerSkill[0].data = [tech, techStandard, standard, standardTrue, trueAcc];
+        this.profileService.getAllCategories().subscribe((categories) => {
+          this.skillLabels = categories.map((c) => c.categoryDisplayName);
+          this.playerSkill[0].data = categories.map((category) => {
+            const categoryScores = scores.filter((s) => s.categoryDisplayName === category.categoryDisplayName);
+            return this.calcSkill(categoryScores) ?? 0;
+          });
+        });
       });
       this.profileService.getPlayerInfo(playerId).subscribe((player) => (this.playerInfo = player));
     });
   }
 
-  calcSkill(scores: PlayerScore[], minTech: number, maxTech: number = 100): number {
-    const playerScores = scores.filter((s) => minTech <= s.complexity && s.complexity <= maxTech);
-    return Math.max(
-      Math.round(
-        (playerScores.reduce((sum, current) => sum + current.ap, 0) / playerScores.length - 190) /
-          0.75
-      ),
-      0
-    );
+  calcSkill(scores: PlayerScore[]): number {
+    const averageAp = scores.reduce((sum, current) => sum + current.ap, 0) / scores.length || 0;
+    console.log(averageAp);
+    if (averageAp < 460) {
+      return Math.max(Math.round(averageAp / 46), 0);
+    }
+    return Math.max(Math.round((averageAp - 400) / 6), 0);
   }
 
   setAsProfile(): void {
