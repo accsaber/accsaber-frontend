@@ -33,8 +33,9 @@ export class LeaderboardComponent implements OnInit {
     { field: 'hmd', headerName: 'HMD' },
   ]);
 
-  rowData: Player[];
+  curLeaderboard: { rowData: Player[]; tabType: TabType } = { rowData: [], tabType: null };
   tabs: BehaviorSubject<Tab[]> = new BehaviorSubject<Tab[]>(null);
+  rankedCategoryTabs: Tab[] = [];
 
   constructor(private leaderboardService: LeaderboardService) {}
 
@@ -43,14 +44,21 @@ export class LeaderboardComponent implements OnInit {
       .getLeaderboards()
       .pipe(
         map((categories) => {
-          const tabs: Tab[] = [{ label: 'Overall', categoryName: 'overall', active: true, countsTowardsOverall: true }];
+          const tabs: Tab[] = [
+            {
+              label: 'Overall',
+              categoryName: 'overall',
+              active: true,
+              tabType: TabType.IS_OVERALL,
+            },
+          ];
           categories
             .map((category) => {
               return {
                 label: category.categoryDisplayName,
                 categoryName: category.categoryName,
                 active: false,
-                countsTowardsOverall: category.countsTowardsOverall
+                tabType: category.countsTowardsOverall ? TabType.COUNTS : TabType.DOES_NOT_COUNT,
               };
             })
             .forEach((tab) => tabs.push(tab));
@@ -58,23 +66,30 @@ export class LeaderboardComponent implements OnInit {
         })
       )
       .subscribe((tabs) => {
+        this.rankedCategoryTabs = tabs.filter((t) => t.tabType === TabType.COUNTS);
         this.tabs.next(tabs);
-        this.selectCategory(0);
+        this.selectCategoryByIndex(0);
       });
   }
 
-  selectCategory(index: number): void {
+  selectCategoryByIndex(index: number): void {
     const tab = this.tabs.value[index];
+    this.selectCategory(tab);
+  }
+
+  selectCategory(tab: Tab): void {
     if (!tab.rowData) {
       this.leaderboardGridOptions.api.showLoadingOverlay();
       this.leaderboardService.getSpecificLeaderBoard(tab.categoryName).subscribe((value) => {
         tab.rowData = value;
-        this.rowData = tab.rowData;
+        this.curLeaderboard.rowData = tab.rowData;
+        this.curLeaderboard.tabType = tab.tabType;
 
         this.leaderboardGridOptions.api.hideOverlay();
       });
     } else {
-      this.rowData = tab.rowData;
+      this.curLeaderboard.rowData = tab.rowData;
+      this.curLeaderboard.tabType = tab.tabType;
     }
   }
 }
@@ -84,5 +99,11 @@ export interface Tab {
   categoryName: string;
   active: boolean;
   rowData?: Player[];
-  countsTowardsOverall: boolean;
+  tabType: TabType;
+}
+
+export enum TabType {
+  IS_OVERALL = 'isOverall',
+  COUNTS = 'counts',
+  DOES_NOT_COUNT = 'doesNotCount',
 }

@@ -1,10 +1,14 @@
 <div class="accsaber-page">
-  <mat-tab-group (selectedIndexChange)="selectCategory($event)" animationDuration="0">
+  <mat-tab-group
+    (selectedIndexChange)="selectCategoryByIndex($event)"
+    animationDuration="0"
+    #categoryTabs
+  >
     <mat-tab *ngIf="(tabs | async) === null" label="Loading leaderboards..."></mat-tab>
     <mat-tab *ngFor="let tab of tabs | async">
       <ng-template mat-tab-label>
         <img
-          *ngIf="tab.countsTowardsOverall"
+          *ngIf="tab.tabType != 'doesNotCount'"
           src="favicon.ico"
           class="label-image"
           alt="counting"
@@ -15,7 +19,31 @@
     </mat-tab>
   </mat-tab-group>
 
-  <div style="height: 100%">
-    <ag-grid-angular [gridOptions]="leaderboardGridOptions" [rowData]="rowData"></ag-grid-angular>
+  <div class="tab-content">
+    <div class="leaderboard-info">
+      <div [ngSwitch]="curLeaderboard.tabType">
+        <p *ngSwitchCase="'isOverall'">
+          Included categories:
+          <mat-chip-list>
+            <mat-chip
+              class="category-list"
+              *ngFor="let category of rankedCategoryTabs"
+              (click)="categoryTabs.selectedIndex = this.tabs.value.indexOf(category)"
+            >
+              {{ category.label }}
+            </mat-chip>
+          </mat-chip-list>
+        </p>
+        <p *ngSwitchCase="'counts'">This category counts towards the overall leaderboard.</p>
+        <p *ngSwitchCase="'doesNotCount'">
+          This category doesn't count towards the overall leaderboard.
+        </p>
+      </div>
+    </div>
+
+    <ag-grid-angular
+      [gridOptions]="leaderboardGridOptions"
+      [rowData]="curLeaderboard.rowData"
+    ></ag-grid-angular>
   </div>
 </div>
