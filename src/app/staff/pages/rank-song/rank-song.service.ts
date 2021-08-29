@@ -20,7 +20,7 @@ export class RankSongService {
     return this.http.get<RankedStatistics>(`${environment.apiUrl}/ranked-maps/statistics`);
   }
 
-  getAllLeaderboards(): Observable<Category[]>{
+  getAllCategories(): Observable<Category[]>{
     return this.http.get<Category[]>(`${environment.apiUrl}/categories`);
   }
 }

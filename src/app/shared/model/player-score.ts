@@ -13,4 +13,6 @@ export interface PlayerScore {
   difficulty: string;
   leaderboardId: string;
   beatsaverKey: string;
+
+  categoryDisplayName: string;
 }

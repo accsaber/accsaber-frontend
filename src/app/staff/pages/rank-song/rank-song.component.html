@@ -31,9 +31,9 @@
       <mat-form-field>
         <mat-label>Category</mat-label>
         <mat-select formControlName="categoryName">
-          <mat-option *ngFor="let category of this.categories" [value]="category.categoryName">{{
-            category.categoryName
-          }} acc</mat-option>
+          <mat-option *ngFor="let category of this.categories" [value]="category.categoryName"
+            >{{ category.categoryDisplayName }} acc</mat-option
+          >
         </mat-select>
       </mat-form-field>
     </form>

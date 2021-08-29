@@ -3,15 +3,14 @@
     <div class="map-info-details" *ngIf="!!mapInfo">
       <div class="song-cover">
         <img
-          src="{{imageUrl}}/covers/{{
-            mapInfo.songHash.toUpperCase()
-          }}.png"
+          src="{{ imageUrl }}/covers/{{ mapInfo.songHash.toUpperCase() }}.png"
           alt="song-cover"
         />
       </div>
       <div class="details">
         <h2>{{ mapInfo.songName }} - {{ mapInfo.songAuthorName }}</h2>
         <p>{{ capitalize(mapInfo.difficulty) }} | Mapped by: {{ mapInfo.levelAuthorName }}</p>
+        <p>{{ mapInfo.categoryDisplayName }}</p>
         <app-complexity [value]="mapInfo.complexity"></app-complexity>
       </div>
     </div>
@@ -19,7 +18,7 @@
       <a
         mat-icon-button
         class="beatsaver"
-        href="https://beatsaver.com/beatmap/{{ mapInfo?.beatsaverKey }}"
+        href="https://beatsaver.com/beatmap/{{ mapInfo?.beatSaverKey }}"
         target="_blank"
         matTooltip="Go to BeatSaver"
         ><mat-icon>archive</mat-icon></a
@@ -30,8 +29,8 @@
         href="https://scoresaber.com/leaderboard/{{ mapInfo?.leaderboardId }}"
         target="_blank"
         matTooltip="Go to ScoreSaber leaderboard"
-        >
-<!--        <mat-icon svgIcon="scoresaberLogo"></mat-icon>-->
+      >
+        <!--        <mat-icon svgIcon="scoresaberLogo"></mat-icon>-->
         <mat-icon>poll</mat-icon>
       </a>
     </div>

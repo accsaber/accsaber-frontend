@@ -1,7 +1,35 @@
 .accsaber-page {
   display: flex;
   flex-direction: column;
+
   mat-tab-group {
-    margin-bottom: 15px;
+    .label-image {
+      max-height: 15px;
+      margin-right: 5px;
+    }
+  }
+
+  .tab-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .leaderboard-info {
+      height: 45px;
+      p {
+        display: flex;
+        line-height: 35px;
+        margin: 5px 0 0;
+        align-items: center;
+
+        mat-chip-list {
+          margin-left: 15px;
+
+          mat-chip {
+            cursor: pointer;
+          }
+        }
+      }
+    }
   }
 }

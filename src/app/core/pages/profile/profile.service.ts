@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { PlayerScore } from '../../../shared/model/player-score';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
+import { Category } from '../../../shared/model/category';
 
 @Injectable({
   providedIn: 'root',
@@ -17,5 +18,9 @@ export class ProfileService {
 
   getPlayerInfo(playerId: string): Observable<Player> {
     return this.http.get<Player>(`${environment.apiUrl}/players/${playerId}`);
+  }
+
+  getAllCategories(): Observable<Category[]>{
+    return this.http.get<Category[]>(`${environment.apiUrl}/categories`);
   }
 }
