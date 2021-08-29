@@ -1,6 +1,7 @@
 .accsaber-page {
   display: flex;
   flex-direction: column;
+
   mat-tab-group {
     .label-image {
       max-height: 15px;
@@ -20,8 +21,13 @@
         line-height: 35px;
         margin: 5px 0 0;
         align-items: center;
+
         mat-chip-list {
           margin-left: 15px;
+
+          mat-chip {
+            cursor: pointer;
+          }
         }
       }
     }

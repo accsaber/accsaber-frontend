@@ -25,7 +25,7 @@ export class AppComponent {
   ];
   isBeta: boolean;
 
-  constructor(private dialog: MatDialog, private renderer: Renderer2, private http: HttpClient) {
+  constructor(private dialog: MatDialog, private renderer: Renderer2) {
     this.isBeta = environment.isBeta;
 
     this.playerName = getPlayerName();

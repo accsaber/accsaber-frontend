@@ -33,7 +33,7 @@ export class LeaderboardComponent implements OnInit {
     { field: 'hmd', headerName: 'HMD' },
   ]);
 
-  curLeaderboard: { rowData: Player[]; tabType: TabType } = { rowData: [], tabType: null };
+  curLeaderboard: CurrentTab = { rowData: [], tabType: null };
   tabs: BehaviorSubject<Tab[]> = new BehaviorSubject<Tab[]>(null);
   rankedCategoryTabs: Tab[] = [];
 
@@ -92,6 +92,11 @@ export class LeaderboardComponent implements OnInit {
       this.curLeaderboard.tabType = tab.tabType;
     }
   }
+}
+
+export interface CurrentTab {
+  rowData: Player[];
+  tabType: TabType;
 }
 
 export interface Tab {
