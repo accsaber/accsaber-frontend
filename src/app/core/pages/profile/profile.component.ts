@@ -10,6 +10,7 @@ import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { getBaseGridOptions } from '../../../shared/utlis/grid-utils';
 import { environment } from '../../../../environments/environment';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-profile',
@@ -32,18 +33,23 @@ export class ProfileComponent implements OnInit {
     },
   };
 
-  rankHistoryData = [5, 2, 4, 1];
-  rankHistoryDates = ['3 days ago', '2 days ago', '1 day ago', 'today'];
+  rankHistoryData = [];
+  rankHistoryDates = [];
   rankHistoryOptions: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
     legend: { display: false },
+    elements: {
+      line: {
+        fill: false,
+      },
+    },
     scales: {
       yAxes: [
         {
           ticks: {
-            suggestedMin: 0.5,
             reverse: true,
+            stepSize: 2,
           },
         },
       ],
@@ -79,18 +85,24 @@ export class ProfileComponent implements OnInit {
         this.profileService.getAllCategories().subscribe((categories) => {
           this.skillLabels = categories.map((c) => c.categoryDisplayName);
           this.playerSkill[0].data = categories.map((category) => {
-            const categoryScores = scores.filter((s) => s.categoryDisplayName === category.categoryDisplayName);
+            const categoryScores = scores.filter(
+              (s) => s.categoryDisplayName === category.categoryDisplayName
+            );
             return this.calcSkill(categoryScores) ?? 0;
           });
         });
       });
-      this.profileService.getPlayerInfo(playerId).subscribe((player) => (this.playerInfo = player));
+      this.profileService.getPlayerInfo(playerId).subscribe((player) => {
+        this.playerInfo = player;
+        this.profileService
+          .getRecentRankedHistory(playerId)
+          .subscribe((history) => this.parseHistory(history, player.rank));
+      });
     });
   }
 
   calcSkill(scores: PlayerScore[]): number {
     const averageAp = scores.reduce((sum, current) => sum + current.ap, 0) / scores.length || 0;
-    console.log(averageAp);
     if (averageAp < 460) {
       return Math.max(Math.round(averageAp / 46), 0);
     }
@@ -100,5 +112,26 @@ export class ProfileComponent implements OnInit {
   setAsProfile(): void {
     savePlayerToStorage(this.playerInfo.playerName, this.playerInfo.playerId);
     window.location.reload();
+  }
+
+  private parseHistory(history: { [p: string]: number }, currentRank: number): void {
+    if (Object.keys(history).length === 0) {
+      return;
+    }
+
+    const keys = Object.keys(history).sort((r, v) => (moment(r) > moment(v) ? 1 : -1));
+
+    this.rankHistoryDates = keys.map((s) => {
+      const amountOfDays = moment().diff(moment(s), 'days');
+      switch (amountOfDays) {
+        case 0:
+          return 'today';
+        case 1:
+          return '1 day ago';
+        default:
+          return `${amountOfDays} days ago`;
+      }
+    });
+    this.rankHistoryData = keys.map((t) => history[t]);
   }
 }

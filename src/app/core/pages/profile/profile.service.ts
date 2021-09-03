@@ -20,7 +20,11 @@ export class ProfileService {
     return this.http.get<Player>(`${environment.apiUrl}/players/${playerId}`);
   }
 
-  getAllCategories(): Observable<Category[]>{
+  getAllCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(`${environment.apiUrl}/categories`);
+  }
+
+  getRecentRankedHistory(playerId: string): Observable<{ [n: string]: number }> {
+    return this.http.get<{ [n: string]: number }>(`${environment.apiUrl}/players/${playerId}/recent-rank-history`);
   }
 }
