@@ -13,7 +13,7 @@ import { map } from 'rxjs/operators';
 })
 export class LeaderboardComponent implements OnInit {
   leaderboardGridOptions: GridOptions = getBaseGridOptions([
-    { type: 'rank' },
+    { type: 'playerRank' },
     { type: 'avatar' },
     { type: 'playerName' },
     { type: 'ap' },

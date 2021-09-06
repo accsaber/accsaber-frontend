@@ -1,0 +1,5 @@
+{{ this.rank }}
+<span *ngIf="!!rankLastWeek && (rankLastWeek < rank || rankLastWeek > rank)">
+  ( <span *ngIf="rankLastWeek < rank" class="negative-rank">{{ rankLastWeek - this.rank }}</span>
+  <span *ngIf="rankLastWeek > rank" class="positive-rank">+{{ rankLastWeek - this.rank }}</span> )
+</span>

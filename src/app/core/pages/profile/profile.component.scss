@@ -20,11 +20,11 @@
 
   .player-info-details {
     display: flex;
+    height: 100%;
   }
 
   .avatar img {
     height: 150px;
-    //height: 100px;
     vertical-align: middle;
     border-radius: 3px;
 
@@ -32,12 +32,22 @@
   }
 
   .details {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-width: 0;
+
     h2 {
       margin-bottom: 0;
     }
     p {
       margin: 0 0 10px;
       padding: 0;
+    }
+
+    .rank-history {
+      height: 100%;
+      min-height: 0;
     }
   }
   a {
@@ -47,12 +57,8 @@
       color: #e9d409;
     }
   }
+
   min-width: 0;
-  .rank-history {
-    min-height: 0;
-    margin-top: 20px;
-    flex: 1;
-  }
 }
 
 .player-details {

@@ -1,5 +1,6 @@
 export interface Player {
   rank: number;
+  rankLastWeek: number;
   playerName: string;
   playerId: string;
   ap: number;

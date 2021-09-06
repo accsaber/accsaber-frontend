@@ -25,6 +25,8 @@ export class ProfileService {
   }
 
   getRecentRankedHistory(playerId: string): Observable<{ [n: string]: number }> {
-    return this.http.get<{ [n: string]: number }>(`${environment.apiUrl}/players/${playerId}/recent-rank-history`);
+    return this.http.get<{ [n: string]: number }>(
+      `${environment.apiUrl}/players/${playerId}/recent-rank-history`
+    );
   }
 }

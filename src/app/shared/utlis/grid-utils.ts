@@ -5,6 +5,7 @@ import { GridButtonComponent } from '../../core/components/grid-button/grid-butt
 import { capitalize, getPlayerId } from './global-utils';
 import * as moment from 'moment';
 import { GridImageComponent } from '../../core/components/grid-avatar/grid-image.component';
+import { GridPlayerRankComponent } from '../../core/components/grid-player-rank/grid-player-rank.component';
 
 export function accValueFormatter(params: ValueFormatterParams): string {
   return `${params.value.toFixed(2)}%`;
@@ -15,7 +16,7 @@ export function songNameValueGetter(data: any): string {
 }
 
 export function getGridSelfHighlight(): string {
-  return 'rgba(69, 204, 69, 0.5)';
+  return 'rgba(69,132,204,0.5)';
 }
 
 export function getApColor(): string {
@@ -72,6 +73,13 @@ export function getColTypes(): { [key: string]: ColDef } {
       },
       minWidth: 150,
       flex: 0.3,
+    },
+    playerRank: {
+      field: 'rank',
+      filter: NumberFilter,
+      minWidth: 100,
+      flex: 0.2,
+      cellRendererFramework: GridPlayerRankComponent,
     },
     rank: {
       field: 'rank',

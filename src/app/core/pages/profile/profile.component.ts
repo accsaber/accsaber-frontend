@@ -39,9 +39,20 @@ export class ProfileComponent implements OnInit {
     responsive: true,
     maintainAspectRatio: false,
     legend: { display: false },
+    hover: {
+      intersect: false,
+      mode: 'index',
+    },
+    tooltips: {
+      intersect: false,
+      mode: 'index',
+    },
     elements: {
       line: {
         fill: false,
+      },
+      point: {
+        radius: 0,
       },
     },
     scales: {
@@ -50,12 +61,17 @@ export class ProfileComponent implements OnInit {
           ticks: {
             reverse: true,
             stepSize: 2,
+            fontColor: 'gray',
+            fontSize: 14,
           },
+          gridLines: { color: '#80808040' },
         },
       ],
       xAxes: [
         {
           scaleLabel: { labelString: 'Date Set', display: false },
+          display: false,
+          gridLines: { color: '#80808040' },
         },
       ],
     },
