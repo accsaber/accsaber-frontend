@@ -11,6 +11,16 @@
   user-select: none;
 }
 
+.privacy-notice {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 10000;
+
+  -webkit-user-select: none;
+  user-select: none;
+}
+
 .theme-switcher {
   position: absolute;
   bottom: 0;

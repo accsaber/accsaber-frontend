@@ -54,6 +54,9 @@
   </mat-sidenav-content>
 </mat-sidenav-container>
 <div class="beta" *ngIf="isBeta">BETA VERSION</div>
+<button mat-button matTooltip="Privacy notice" [routerLink]="'privacy/'" class="privacy-notice">
+  Privacy notice
+</button>
 <button mat-button matTooltip="Switch theme" (click)="this.switchTheme()" class="theme-switcher">
   Switch theme
 </button>
