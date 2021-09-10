@@ -16,7 +16,7 @@
   </mat-toolbar-row>
 </mat-toolbar>
 
-<mat-sidenav-container style="height: calc(100% - 64px)">
+<mat-sidenav-container style="height: calc(100% - 64px - 36px)">
   <mat-sidenav
     [autoFocus]="false"
     #sidenav
@@ -44,7 +44,7 @@
         min-width: 1000px;
         max-width: 1500px;
         overflow: auto;
-        height: 100%;
+        height: calc(100%);
         min-height: 830px;
         margin: auto;
       "
@@ -53,10 +53,12 @@
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
 <div class="beta" *ngIf="isBeta">BETA VERSION</div>
-<button mat-button matTooltip="Privacy notice" [routerLink]="'privacy/'" class="privacy-notice">
-  Privacy notice
-</button>
-<button mat-button matTooltip="Switch theme" (click)="this.switchTheme()" class="theme-switcher">
-  Switch theme
-</button>
+
+<div class="accsaber-footer">
+  <button mat-button routerLink="privacy">Privacy</button>
+  <a mat-button href="https://discord.gg/zd8W4rr" target="_blank"> Discord </a>
+  <div class="spacer"></div>
+  <button mat-button (click)="this.switchTheme()" class="align-right">Switch Theme</button>
+</div>
