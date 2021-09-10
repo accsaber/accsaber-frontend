@@ -26,6 +26,7 @@ import { ChartsModule } from 'ng2-charts';
 import { GridImageComponent } from './components/grid-avatar/grid-image.component';
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatChipsModule } from '@angular/material/chips';
+import { PrivacyComponent } from './pages/privacy/privacy.component';
 import { GridPlayerRankComponent } from './components/grid-player-rank/grid-player-rank.component';
 import { MatMenuModule } from '@angular/material/menu';
 
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: 'map-leaderboards/:leaderboardId', component: MapLeaderboardComponent },
   { path: 'player-profile/:playerId', component: ProfileComponent },
   { path: 'staff-login', component: StaffLoginComponent },
+  { path: 'privacy', component: PrivacyComponent },
   // { path: 'bi-weekly-challenge', component: BiWeeklyChallengeComponent },
 ];
 
@@ -53,6 +55,7 @@ const routes: Routes = [
     ComplexityComponent,
     ProfileComponent,
     GridImageComponent,
+    PrivacyComponent,
     GridPlayerRankComponent
   ],
   imports: [
