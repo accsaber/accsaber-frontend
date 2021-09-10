@@ -31,6 +31,14 @@ body {
     text-decoration: none;
   }
 
+  .positive-rank {
+    color: #178800;
+  }
+
+  .negative-rank {
+    color: #cc0000;
+  }
+
   .current-page {
     background: lightblue;
     font-weight: bold;
@@ -82,6 +90,18 @@ body {
   a:visited {
     color: #73a8ff;
     text-decoration: none;
+  }
+
+  .positive-rank {
+    color: #00cb00;
+  }
+
+  .negative-rank {
+    color: #ff1f1f;
+  }
+
+  .mat-ink-bar {
+    background-color: #839cff !important;
   }
 
   .current-page {

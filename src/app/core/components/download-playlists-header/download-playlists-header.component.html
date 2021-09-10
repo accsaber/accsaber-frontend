@@ -1,0 +1,15 @@
+<button
+  mat-icon-button
+  [matTooltip]="params.buttonInfo.tooltip"
+  [ngStyle]="{ color: !params.buttonInfo.color ? '#000000' : params.buttonInfo.color }"
+  (click)="onButtonClicked()"
+  [matMenuTriggerFor]="menu"
+>
+  <mat-icon>{{ params.buttonInfo.icon }}</mat-icon>
+</button>
+<mat-menu #menu xPosition="before">
+  <div mat-menu-item *ngIf="categories.length === 0">Loading...</div>
+  <button mat-menu-item *ngFor="let cat of categories" (click)="downloadPlaylist(cat.categoryName)">
+    Download {{ cat.categoryDisplayName }} Playlist
+  </button>
+</mat-menu>
