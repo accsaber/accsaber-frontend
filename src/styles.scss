@@ -21,6 +21,15 @@ body {
     @include ag-theme-alpine($ag-theme-alpine-default-params);
   }
 
+  .accsaber-footer {
+    display: flex;
+    background-color: #fafafa;
+
+    a {
+      color: black !important;
+    }
+  }
+
   a:link {
     color: #0000ff;
     text-decoration: none;
@@ -81,6 +90,15 @@ body {
   }
 
   color: white;
+
+  .accsaber-footer {
+    display: flex;
+    background-color: #303030;
+
+    a {
+      color: white !important;
+    }
+  }
 
   a:link {
     color: #73a8ff;

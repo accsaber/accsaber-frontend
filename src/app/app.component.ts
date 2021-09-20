@@ -1,16 +1,16 @@
-import { Component, Renderer2 } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { SignUpComponent } from './core/components/sign-up/sign-up.component';
 import { environment } from '../environments/environment';
 import { getPlayerId, getPlayerName, getTheme, setTheme } from './shared/utlis/global-utils';
-import { HttpClient } from '@angular/common/http';
+import { ScpmComponent } from './core/components/scpm/scpm.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'accsaber-frontend';
   playerName: string;
   playerId: string;
@@ -33,6 +33,12 @@ export class AppComponent {
 
     if (getTheme() === 'dark') {
       this.setDarkTheme();
+    }
+  }
+
+  ngOnInit(): void {
+    if (!localStorage.getItem('dontShowSCPM')) {
+      this.dialog.open(ScpmComponent, { position: { top: '50px' }, maxWidth: '40%' });
     }
   }
 

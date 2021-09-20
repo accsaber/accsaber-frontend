@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { GridOptions } from 'ag-grid-community';
-import { savePlayerToStorage } from '../../../shared/utlis/global-utils';
+import { getPlayerId, savePlayerToStorage } from '../../../shared/utlis/global-utils';
 import { ProfileService } from './profile.service';
 import { PlayerScore } from '../../../shared/model/player-score';
 import { Player } from '../../../shared/model/player';
@@ -18,6 +18,7 @@ import * as moment from 'moment';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
+  isSetAsProfile: boolean;
   rowData: Observable<PlayerScore[]>;
   skillLabels: Label[] = [];
   playerSkill: ChartDataSets[] = [];
@@ -90,12 +91,14 @@ export class ProfileComponent implements OnInit {
     { type: 'complexity' },
   ]);
   imageUrl = environment.imageUrl;
+  playerNotFound: boolean;
 
   constructor(private route: ActivatedRoute, private profileService: ProfileService) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       const playerId = params.playerId;
+      this.isSetAsProfile = playerId === getPlayerId();
       this.rowData = this.profileService.getPlayerRankedScores(playerId);
       this.rowData.subscribe((scores) => {
         this.profileService.getAllCategories().subscribe((categories) => {
@@ -108,12 +111,20 @@ export class ProfileComponent implements OnInit {
           });
         });
       });
-      this.profileService.getPlayerInfo(playerId).subscribe((player) => {
-        this.playerInfo = player;
-        this.profileService
-          .getRecentRankedHistory(playerId)
-          .subscribe((history) => this.parseHistory(history, player.rank));
-      });
+      this.profileService.getPlayerInfo(playerId).subscribe(
+        (player) => {
+          this.playerInfo = player;
+          this.profileService
+            .getRecentRankedHistory(playerId)
+            .subscribe((history) => this.parseHistory(history, player.rank));
+        },
+        (error) => {
+          console.log(error);
+          if (error.status === 404) {
+            this.playerNotFound = true;
+          }
+        }
+      );
     });
   }
 

@@ -1,0 +1,12 @@
+<div style="display: flex; flex-direction: column; gap: 5px">
+  <mat-icon color="warn">warning</mat-icon>
+  Going forward scores set with the Small Cubes & Pro Mode modifiers will be banned on AccSaber.
+  <br />
+  Scores set before 13/09/21 (UTC) will stay valid for 2 months, any scores set with SCPM after this
+  date will not be counted and will still overwrite your current score, so don't set any SCPM
+  scores!
+  <div style="display: flex; place-content: flex-end; gap: 10px">
+    <button mat-button (click)="close()">Ok</button>
+    <button mat-button (click)="dontShowAndClose()">Don't show this again</button>
+  </div>
+</div>

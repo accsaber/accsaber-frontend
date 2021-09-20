@@ -24,11 +24,12 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
 import { ChartsModule } from 'ng2-charts';
 import { GridImageComponent } from './components/grid-avatar/grid-image.component';
-import { MatTabsModule } from "@angular/material/tabs";
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatChipsModule } from '@angular/material/chips';
 import { PrivacyComponent } from './pages/privacy/privacy.component';
 import { GridPlayerRankComponent } from './components/grid-player-rank/grid-player-rank.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { ScpmComponent } from './components/scpm/scpm.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'leaderboard', pathMatch: 'full' },
@@ -56,7 +57,8 @@ const routes: Routes = [
     ProfileComponent,
     GridImageComponent,
     PrivacyComponent,
-    GridPlayerRankComponent
+    GridPlayerRankComponent,
+    ScpmComponent,
   ],
   imports: [
     CommonModule,
@@ -75,7 +77,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatTabsModule,
     MatChipsModule,
-    MatMenuModule
-  ]
+    MatMenuModule,
+  ],
 })
 export class CoreModule {}

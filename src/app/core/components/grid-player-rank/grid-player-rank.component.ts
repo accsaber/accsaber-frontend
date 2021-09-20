@@ -18,7 +18,6 @@ export class GridPlayerRankComponent implements ICellRendererAngularComp {
   agInit(params: ICellRendererParams): void {
     if (params) {
       this.rank = params.data.rank;
-      console.log(this.rank);
       this.rankLastWeek = params.data.rankLastWeek;
     }
   }
