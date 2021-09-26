@@ -15,8 +15,13 @@
   height: 50px;
 }
 
-.links {
-  font-size: 20px;
+.toolbar-row {
+  .links {
+    font-size: 20px;
+  }
+  a {
+    color: unset !important;
+  }
 }
 
 .player {
@@ -38,14 +43,5 @@
     vertical-align: middle;
     border-radius: 20px;
     margin-left: 10px;
-  }
-}
-
-.accsaber-footer {
-  display: flex;
-  background-color: #fafafa;
-
-  a {
-    color: black;
   }
 }

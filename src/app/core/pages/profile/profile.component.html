@@ -30,7 +30,9 @@
     >
   </div>
   <div class="player-details acc-card">
-    <button mat-raised-button (click)="setAsProfile()">Set as my profile</button>
+    <button mat-raised-button (click)="setAsProfile()" *ngIf="!isSetAsProfile">
+      Set as my profile
+    </button>
     <div>
       <canvas
         baseChart
@@ -48,4 +50,8 @@
     [rowData]="rowData | async"
     class="scores"
   ></ag-grid-angular>
+</div>
+<div *ngIf="playerNotFound" class="player-not-loaded mat-elevation-z5">
+  This player profile was not found. If this is your profile and you signed up this means that your
+  profile has not yet loaded in. This process might take up to a few hours.
 </div>

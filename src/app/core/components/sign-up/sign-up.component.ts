@@ -29,6 +29,8 @@ export class SignUpComponent implements OnInit {
     'HTC Vive Pro',
     'HTC Vive Pro | Index Controllers',
     'Pimax | Index Controllers',
+    'Windows Mixed Reality',
+    'Custom Controllers',
   ];
 
   constructor(

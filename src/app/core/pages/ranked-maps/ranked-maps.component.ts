@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GridApi, GridOptions } from 'ag-grid-community';
+import { GridOptions } from 'ag-grid-community';
 import { Observable } from 'rxjs';
 import { RankedMap } from '../../../shared/model/ranked-map';
 import { RankedMapsService } from './ranked-maps.service';
@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 import { DownloadPlaylistsHeaderComponent } from '../../components/download-playlists-header/download-playlists-header.component';
 import { HttpClient } from '@angular/common/http';
 import { getBaseGridOptions } from '../../../shared/utlis/grid-utils';
-import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-ranked-maps',
@@ -41,7 +40,7 @@ export class RankedMapsComponent implements OnInit {
           {
             clickCallback: (key) => this.openBeatSaver(key),
             icon: 'archive',
-            accessor: 'beatsaverKey',
+            accessor: 'beatSaverKey',
           },
           {
             clickCallback: (leaderboardId) => this.openScoresaberLeaderboard(leaderboardId),
@@ -66,9 +65,8 @@ export class RankedMapsComponent implements OnInit {
     this.rowData = this.rankedMapsService.getRankedMaps();
   }
 
-
   private openBeatSaver(key: string): void {
-    window.open(`https://beatsaver.com/beatmap/${key}`, '_blank');
+    window.open(`https://beatsaver.com/maps/${key}`, '_blank');
   }
 
   private openScoresaberLeaderboard(leaderboardId: string): void {

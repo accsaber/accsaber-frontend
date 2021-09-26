@@ -98,7 +98,6 @@ export class RankSongComponent implements OnInit {
   rankSong(): void {
     const rankSongInfo: RankSongDto = this.rankForm.getRawValue();
     rankSongInfo.complexity = this.complexity;
-    console.log(rankSongInfo);
     this.rankSongService.rankSong(rankSongInfo).subscribe(
       () => {
         showInfo(this.snackbar, 'Successfully ranked map');

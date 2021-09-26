@@ -1,18 +1,18 @@
 <mat-toolbar color="primary" class="mat-elevation-z5">
-  <mat-toolbar-row style="min-width: 1000px; max-width: 1500px; margin: auto">
+  <mat-toolbar-row class="toolbar-row" style="min-width: 1000px; max-width: 1500px; margin: auto">
     <button mat-icon-button (click)="sidenav.toggle()" *ngIf="false">
       <mat-icon>menu</mat-icon>
     </button>
     <img src="assets/acc" class="accsaber-icon" alt="accsaber-logo" />
-    <button mat-button *ngFor="let link of links" [routerLink]="link.linkPath" class="links">
+    <a mat-button *ngFor="let link of links" [routerLink]="link.linkPath" class="links">
       {{ link.linkName }}
-    </button>
+    </a>
     <div class="spacer"></div>
     <button mat-button (click)="showSignupDialog()" *ngIf="!playerName">Sign up</button>
-    <div *ngIf="!!playerName" class="player" [routerLink]="'player-profile/' + playerId" mat-ripple>
+    <a *ngIf="!!playerName" class="player" [routerLink]="'player-profile/' + playerId" mat-ripple>
       <p>{{ playerName }}</p>
-      <img src="{{ imageUrl }}/avatars/{{ playerId }}.jpg" alt="player-avatar" />
-    </div>
+      <img src="{{ imageUrl }}/avatars/{{ playerId }}.jpg" alt=" " />
+    </a>
   </mat-toolbar-row>
 </mat-toolbar>
 
@@ -57,8 +57,8 @@
 <div class="beta" *ngIf="isBeta">BETA VERSION</div>
 
 <div class="accsaber-footer">
-  <button mat-button routerLink="privacy">Privacy</button>
+  <a mat-button routerLink="privacy">Privacy</a>
   <a mat-button href="https://discord.gg/zd8W4rr" target="_blank"> Discord </a>
   <div class="spacer"></div>
-  <button mat-button (click)="this.switchTheme()" class="align-right">Switch Theme</button>
+  <button mat-button (click)="this.switchTheme()" class="align-right">Toggle Dark Theme</button>
 </div>
