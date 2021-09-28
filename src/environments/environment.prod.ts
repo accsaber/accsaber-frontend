@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://api.accsaber.com',
-  imageUrl: 'https://cdn.accsaber.com',
+  apiUrl: '/api',
+  imageUrl: '/cdn',
   isBeta: false,
 };
