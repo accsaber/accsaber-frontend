@@ -12,8 +12,11 @@ RUN npm install
 COPY . .
 RUN npx ng build --prod
 
-FROM nginx:alpine
+FROM alpine
+RUN apk add nginx
+RUN apk add nginx-mod-http-brotli
 WORKDIR /usr/share/nginx/html
 COPY --from=build /app/dist/* .
 ADD nginx.conf /etc/nginx/nginx.conf
 ENV NGINX_PORT=8080
+CMD [ "nginx" ]
