@@ -10,7 +10,7 @@ RUN npm install
 
 # Copy and build app
 COPY . .
-RUN npx ng build --prod
+RUN npx ng build --prod --subresource-integrity
 
 FROM alpine
 RUN apk add nginx
