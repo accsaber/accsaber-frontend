@@ -1,14 +1,13 @@
 FROM node:lts AS build
-ENV NODE_ENV=production
 RUN mkdir /app
 WORKDIR /app
 
 # Install dependencies
 COPY ["package.json", "package-lock.json", "./"]
-RUN npm install --only=dev
-RUN npm install
+RUN npm ci
 
 # Copy and build app
+ENV NODE_ENV=production
 COPY . .
 RUN npx ng build --prod --subresource-integrity
 
