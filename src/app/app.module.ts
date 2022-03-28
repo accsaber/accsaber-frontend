@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AgGridModule } from 'ag-grid-angular';
+import { AgGridModule } from '@ag-grid-community/angular';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
@@ -20,6 +20,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { SharedModule } from './shared/shared.module';
 
 import scoresaberLogo from '!!raw-loader!./../assets/scoresaber-logo.svg';
+import { ClientSideRowModelModule } from '@ag-grid-community/client-side-row-model';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,7 +28,7 @@ import scoresaberLogo from '!!raw-loader!./../assets/scoresaber-logo.svg';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    AgGridModule.withComponents([]),
+    AgGridModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
@@ -51,7 +52,8 @@ import scoresaberLogo from '!!raw-loader!./../assets/scoresaber-logo.svg';
 export class AppModule {
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     iconRegistry.addSvgIconLiteral(
-      'scoresaberLogo', sanitizer.bypassSecurityTrustHtml(scoresaberLogo));
+      'scoresaberLogo',
+      sanitizer.bypassSecurityTrustHtml(scoresaberLogo)
+    );
   }
-
 }

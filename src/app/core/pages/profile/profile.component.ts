@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { GridOptions } from 'ag-grid-community';
+import { GridOptions, Module } from '@ag-grid-community/core';
 import { getPlayerId, savePlayerToStorage } from '../../../shared/utlis/global-utils';
 import { ProfileService } from './profile.service';
 import { PlayerScore } from '../../../shared/model/player-score';
@@ -11,6 +11,7 @@ import { Label } from 'ng2-charts';
 import { getBaseGridOptions } from '../../../shared/utlis/grid-utils';
 import { environment } from '../../../../environments/environment';
 import * as moment from 'moment';
+import { ClientSideRowModelModule } from '@ag-grid-community/client-side-row-model';
 
 @Component({
   selector: 'app-profile',
@@ -90,6 +91,8 @@ export class ProfileComponent implements OnInit {
     { type: 'difficulty' },
     { type: 'complexity' },
   ]);
+
+  modules: Module[] = [ClientSideRowModelModule];
   imageUrl = environment.imageUrl;
   playerNotFound: boolean;
 

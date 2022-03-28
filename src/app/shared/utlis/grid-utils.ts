@@ -1,4 +1,10 @@
-import { ColDef, GridOptions, NumberFilter, TextFilter, ValueFormatterParams } from 'ag-grid-community';
+import {
+  ColDef,
+  GridOptions,
+  NumberFilter,
+  TextFilter,
+  ValueFormatterParams,
+} from '@ag-grid-community/core';
 import { GridLinkComponent } from '../../core/components/grid-link/grid-link.component';
 import { ComplexityComponent } from '../../core/components/complexity/complexity.component';
 import { GridButtonComponent } from '../../core/components/grid-button/grid-button.component';
@@ -54,7 +60,7 @@ export function getColTypes(): { [key: string]: ColDef } {
       headerName: 'AP',
       filter: NumberFilter,
       valueFormatter: (params) => params.value.toFixed(2),
-      sortingOrder: ['desc', 'asc', ''],
+      sortingOrder: ['desc', 'asc'],
       cellStyle: () => {
         return { color: getApColor() };
       },
@@ -67,7 +73,7 @@ export function getColTypes(): { [key: string]: ColDef } {
       filter: NumberFilter,
       valueFormatter: (params) =>
         `${params.value.toFixed(2)} (${params.data.weightedAp.toFixed(2)})`,
-      sortingOrder: ['desc', 'asc', ''],
+      sortingOrder: ['desc', 'asc'],
       cellStyle: () => {
         return { color: getApColor() };
       },
@@ -92,7 +98,7 @@ export function getColTypes(): { [key: string]: ColDef } {
       valueGetter: (params) => params.data.accuracy * 100,
       valueFormatter: (params) => accValueFormatter(params),
       filter: NumberFilter,
-      sortingOrder: ['desc', 'asc', ''],
+      sortingOrder: ['desc', 'asc'],
       minWidth: 150,
       flex: 0.2,
     },

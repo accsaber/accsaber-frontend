@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-@import "../node_modules/ag-grid-community/dist/styles/ag-grid.css";
-@import "../node_modules/ag-grid-community/dist/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin";
-@import "../node_modules/ag-grid-community/dist/styles/ag-theme-alpine-dark/sass/ag-theme-alpine-dark-mixin";
+@import "../node_modules/@ag-grid-community/core/dist/styles/ag-grid.css";
+@import "../node_modules/@ag-grid-community/core/dist/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin";
+@import "../node_modules/@ag-grid-community/core/dist/styles/ag-theme-alpine-dark/sass/ag-theme-alpine-dark-mixin";
 
 @import "~@angular/material/_theming.scss";
 @import "theme";

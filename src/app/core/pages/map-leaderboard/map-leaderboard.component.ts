@@ -3,13 +3,14 @@ import { ActivatedRoute } from '@angular/router';
 import { MapLeaderboardService } from './map-leaderboard.service';
 import { MapLeaderboardPlayer } from '../../../shared/model/map-leaderboard-player';
 import { Observable } from 'rxjs';
-import { GridOptions, NumberFilter } from 'ag-grid-community';
+import { GridOptions, Module, NumberFilter } from '@ag-grid-community/core';
 import { capitalize, getPlayerId } from '../../../shared/utlis/global-utils';
 import { RankedMap } from '../../../shared/model/ranked-map';
 import { getBaseGridOptions } from '../../../shared/utlis/grid-utils';
 import { ChartOptions } from 'chart.js';
 import * as moment from 'moment';
 import { environment } from '../../../../environments/environment';
+import { ClientSideRowModelModule } from '@ag-grid-community/client-side-row-model';
 
 @Component({
   selector: 'app-map-leaderboard',
@@ -20,6 +21,8 @@ export class MapLeaderboardComponent implements OnInit {
   imageUrl = environment.imageUrl;
 
   rowData: Observable<MapLeaderboardPlayer[]>;
+
+  modules: Module[] = [ClientSideRowModelModule];
   mapInfo: RankedMap;
 
   accuracyHistoryData = [];
