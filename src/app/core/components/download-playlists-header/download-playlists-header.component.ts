@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IHeaderAngularComp } from 'ag-grid-angular';
-import { IHeaderParams } from 'ag-grid-community';
+import { IHeaderAngularComp } from '@ag-grid-community/angular';
+import { IHeaderParams } from '@ag-grid-community/core';
 import { DownloadPlaylistsHeaderService } from './download-playlists-header.service';
 import { Category } from '../../../shared/model/category';
 import { environment } from '../../../../environments/environment';

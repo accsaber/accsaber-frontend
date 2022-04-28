@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { LeaderboardComponent } from './pages/leaderboard/leaderboard.component';
-import { AgGridModule } from 'ag-grid-angular';
+import { AgGridModule } from '@ag-grid-community/angular';
 import { RankedMapsComponent } from './pages/ranked-maps/ranked-maps.component';
 import { BiWeeklyChallengeComponent } from './pages/weekly-challenge/bi-weekly-challenge.component';
 import { StaffLoginComponent } from './pages/staff-login/staff-login.component';

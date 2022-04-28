@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ICellRendererAngularComp } from 'ag-grid-angular';
-import { ICellRendererParams } from 'ag-grid-community';
+import { ICellRendererAngularComp } from '@ag-grid-community/angular';
+import { ICellRendererParams } from '@ag-grid-community/core';
 
 @Component({
   selector: 'app-grid-link',

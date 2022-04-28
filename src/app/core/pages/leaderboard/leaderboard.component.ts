@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { GridOptions, NumberFilter } from 'ag-grid-community';
+import { GridOptions, Module, NumberFilter } from '@ag-grid-community/core';
 import { LeaderboardService } from './leaderboard.service';
 import { BehaviorSubject } from 'rxjs';
 import { Player } from '../../../shared/model/player';
 import { getBaseGridOptions } from '../../../shared/utlis/grid-utils';
 import { map } from 'rxjs/operators';
+import { ClientSideRowModelModule } from '@ag-grid-community/client-side-row-model';
 
 @Component({
   selector: 'app-leaderboard',
@@ -22,13 +23,13 @@ export class LeaderboardComponent implements OnInit {
       field: 'averageAcc',
       valueGetter: (params) => params.data.averageAcc * 100,
     },
-    { field: 'rankedPlays', filter: NumberFilter, sortingOrder: ['desc', 'asc', ''] },
+    { field: 'rankedPlays', filter: NumberFilter, sortingOrder: ['desc', 'asc'] },
     {
       field: 'averageApPerMap',
       headerName: 'Average AP Per Map',
       filter: NumberFilter,
       valueFormatter: (params) => params.value.toFixed(2),
-      sortingOrder: ['desc', 'asc', ''],
+      sortingOrder: ['desc', 'asc'],
     },
     { field: 'hmd', headerName: 'HMD' },
   ]);
@@ -36,6 +37,7 @@ export class LeaderboardComponent implements OnInit {
   curLeaderboard: CurrentTab = { rowData: [], tabType: null };
   tabs: BehaviorSubject<Tab[]> = new BehaviorSubject<Tab[]>(null);
   rankedCategoryTabs: Tab[] = [];
+  modules: Module[] = [ClientSideRowModelModule];
 
   constructor(private leaderboardService: LeaderboardService) {}
 

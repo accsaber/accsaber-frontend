@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GridOptions } from 'ag-grid-community';
+import { GridOptions, Module } from '@ag-grid-community/core';
 import { Observable } from 'rxjs';
 import { RankedMap } from '../../../shared/model/ranked-map';
 import { RankedMapsService } from './ranked-maps.service';
@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { DownloadPlaylistsHeaderComponent } from '../../components/download-playlists-header/download-playlists-header.component';
 import { HttpClient } from '@angular/common/http';
 import { getBaseGridOptions } from '../../../shared/utlis/grid-utils';
+import { ClientSideRowModelModule } from '@ag-grid-community/client-side-row-model';
 
 @Component({
   selector: 'app-ranked-maps',
@@ -52,6 +53,8 @@ export class RankedMapsComponent implements OnInit {
       },
     },
   ]);
+
+  modules: Module[] = [ClientSideRowModelModule];
 
   rowData: Observable<RankedMap[]>;
 
