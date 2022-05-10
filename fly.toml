@@ -7,6 +7,11 @@ kill_timeout = 5
   allowed_public_ports = []
   auto_rollback = true
 
+
+[[statics]]
+  guest_path = "/usr/share/nginx/html"
+  url_prefix = "/"
+
 [[services]]
   internal_port = 8080
   protocol = "tcp"
@@ -18,6 +23,7 @@ kill_timeout = 5
   [[services.ports]]
     handlers = ["http"]
     port = "80"
+    force_https = true
 
   [[services.ports]]
     handlers = ["tls", "http"]
