@@ -25,11 +25,10 @@ export class SignUpService {
     );
   }
 
-  signUpPlayer(playerInfo: ScoreSaberPlayerInfo, hmd: string): Observable<void> {
+  signUpPlayer(playerInfo: ScoreSaberPlayerInfo): Observable<void> {
     return this.http.post<void>(`${environment.apiUrl}/players/`, {
       scoresaberLink: playerInfo.playerId,
       playerName: playerInfo.playerName,
-      hmd,
     });
   }
 }

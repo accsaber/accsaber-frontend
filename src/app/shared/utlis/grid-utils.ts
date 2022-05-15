@@ -3,7 +3,7 @@ import {
   GridOptions,
   NumberFilter,
   TextFilter,
-  ValueFormatterParams,
+  ValueFormatterParams
 } from '@ag-grid-community/core';
 import { GridLinkComponent } from '../../core/components/grid-link/grid-link.component';
 import { ComplexityComponent } from '../../core/components/complexity/complexity.component';
@@ -45,11 +45,11 @@ export function getBaseGridOptions(colDefs: ColDef[]): GridOptions {
       filter: true,
       filterParams: {
         suppressAndOrCondition: true,
-        buttons: ['clear'],
-      },
+        buttons: ['clear']
+      }
     },
     columnTypes: getColTypes(),
-    columnDefs: colDefs,
+    columnDefs: colDefs
   };
 }
 
@@ -65,7 +65,7 @@ export function getColTypes(): { [key: string]: ColDef } {
         return { color: getApColor() };
       },
       minWidth: 100,
-      flex: 0.3,
+      flex: 0.3
     },
     weightedAp: {
       field: 'ap',
@@ -78,20 +78,20 @@ export function getColTypes(): { [key: string]: ColDef } {
         return { color: getApColor() };
       },
       minWidth: 150,
-      flex: 0.3,
+      flex: 0.3
     },
     playerRank: {
       field: 'rank',
       filter: NumberFilter,
       minWidth: 100,
       flex: 0.2,
-      cellRendererFramework: GridPlayerRankComponent,
+      cellRendererFramework: GridPlayerRankComponent
     },
     rank: {
       field: 'rank',
       filter: NumberFilter,
       minWidth: 100,
-      flex: 0.2,
+      flex: 0.2
     },
     accuracy: {
       field: 'accuracy',
@@ -100,7 +100,7 @@ export function getColTypes(): { [key: string]: ColDef } {
       filter: NumberFilter,
       sortingOrder: ['desc', 'asc'],
       minWidth: 150,
-      flex: 0.2,
+      flex: 0.2
     },
     complexity: {
       field: 'complexity',
@@ -109,6 +109,7 @@ export function getColTypes(): { [key: string]: ColDef } {
       cellRendererFramework: ComplexityComponent,
       flex: 0.3,
       minWidth: 150,
+      cellStyle: { 'align-items': 'center', display: "flex" }
     },
     category: {
       field: 'categoryDisplayName',
@@ -116,7 +117,7 @@ export function getColTypes(): { [key: string]: ColDef } {
       valueFormatter: (params) => params.value,
       filter: TextFilter,
       flex: 0.1,
-      minWidth: 175,
+      minWidth: 175
     },
     song: {
       headerName: 'Song',
@@ -124,7 +125,7 @@ export function getColTypes(): { [key: string]: ColDef } {
       cellRendererFramework: GridLinkComponent,
       cellRendererParams: { link: '/map-leaderboards', accessor: 'leaderboardId' },
       flex: 0.8,
-      minWidth: 300,
+      minWidth: 300
     },
     playerName: {
       headerName: 'Player Name',
@@ -132,27 +133,27 @@ export function getColTypes(): { [key: string]: ColDef } {
       cellRendererFramework: GridLinkComponent,
       cellRendererParams: { link: '/player-profile', accessor: 'playerId' },
       flex: 0.5,
-      minWidth: 200,
+      minWidth: 200
     },
     difficulty: {
       field: 'difficulty',
       valueFormatter: (params) => capitalize(params.value),
       minWidth: 125,
-      flex: 0.3,
+      flex: 0.3
     },
     button: {
       cellRendererFramework: GridButtonComponent,
       sortable: false,
       filter: false,
       suppressMenu: true,
-      width: 75,
+      width: 75
     },
     timeSet: {
       field: 'timeSet',
       valueGetter: (params) => moment(params.data.timeSet),
       valueFormatter: (params) => params.value.fromNow(),
       minWidth: 150,
-      flex: 0.3,
+      flex: 0.3
     },
     avatar: {
       cellRendererFramework: GridImageComponent,
@@ -160,7 +161,7 @@ export function getColTypes(): { [key: string]: ColDef } {
       headerName: '',
       sortable: false,
       filter: false,
-      width: 72,
+      width: 72
     },
     songCoverArt: {
       cellRendererFramework: GridImageComponent,
@@ -168,7 +169,7 @@ export function getColTypes(): { [key: string]: ColDef } {
       headerName: '',
       sortable: false,
       filter: false,
-      width: 72,
-    },
+      width: 72
+    }
   };
 }
