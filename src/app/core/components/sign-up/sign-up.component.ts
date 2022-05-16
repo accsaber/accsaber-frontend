@@ -14,24 +14,9 @@ import { savePlayerToStorage } from '../../../shared/utlis/global-utils';
 })
 export class SignUpComponent implements OnInit {
   scoreSaberLink: string;
-  selectedHmd: string;
   isLoading: boolean;
 
   playerInfo: ScoreSaberPlayerInfo;
-  hmds = [
-    'Valve Index',
-    'Oculus CV1',
-    'Oculus Quest',
-    'Oculus Quest 2',
-    'Oculus Rift S',
-    'HTC Vive',
-    'HTC Vive | Index Controllers',
-    'HTC Vive Pro',
-    'HTC Vive Pro | Index Controllers',
-    'Pimax | Index Controllers',
-    'Windows Mixed Reality',
-    'Custom Controllers',
-  ];
 
   constructor(
     private signupService: SignUpService,
@@ -57,7 +42,7 @@ export class SignUpComponent implements OnInit {
 
   signupPlayer(): void {
     this.isLoading = true;
-    this.signupService.signUpPlayer(this.playerInfo, this.selectedHmd).subscribe(
+    this.signupService.signUpPlayer(this.playerInfo).subscribe(
       () => {
         savePlayerToStorage(this.playerInfo.playerName, this.playerInfo.playerId);
         window.location.reload();
