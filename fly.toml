@@ -1,43 +1,31 @@
 app = "accsaber-frontend"
-
+primary_region = "ams"
 kill_signal = "SIGINT"
-kill_timeout = 5
+kill_timeout = "5s"
 
 [experimental]
-  allowed_public_ports = []
-  auto_rollback = true
+auto_rollback = true
 
+[env]
+PORT = "8080"
+
+[http_service]
+internal_port = 8080
+force_https = true
+auto_stop_machines = true
+auto_start_machines = true
+min_machines_running = 0
+[http_service.concurrency]
+type = "requests"
+soft_limit = 50
+hard_limit = 75
+
+[[services.tcp_checks]]
+interval = "15s"
+timeout = "2s"
+grace_period = "1s"
+restart_limit = 0
 
 [[statics]]
-  guest_path = "/usr/share/nginx/html"
-  url_prefix = "/"
-
-[[services]]
-  internal_port = 8080
-  protocol = "tcp"
-
-  [services.concurrency]
-    hard_limit = 2000
-    soft_limit = 200
-
-  [[services.ports]]
-    handlers = ["http"]
-    port = "80"
-    force_https = true
-
-  [[services.ports]]
-    handlers = ["tls", "http"]
-    port = "443"
-
-  [[services.http_checks]]
-    interval = 10000
-    method = "get"
-    path = "/cdn_healthcheck"
-    protocol = "http"
-    timeout = 2000
-    [services.http_checks.headers]
-      Host = "health.check"
-
-[metrics]
-  port = 9145
-  path = "/metrics"
+guest_path = "/app/public"
+url_prefix = "/"
